@@ -1,0 +1,976 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		18B684F706944F2000CC6A1E /* 4DPluginAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 18B684F006944F2000CC6A1E /* 4DPluginAPI.h */; };
+		18B684F806944F2000CC6A1E /* EntryPoints.h in Headers */ = {isa = PBXBuildFile; fileRef = 18B684F106944F2000CC6A1E /* EntryPoints.h */; };
+		18B684F906944F2000CC6A1E /* Flags.h in Headers */ = {isa = PBXBuildFile; fileRef = 18B684F206944F2000CC6A1E /* Flags.h */; };
+		18B684FA06944F2000CC6A1E /* PrivateTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 18B684F306944F2000CC6A1E /* PrivateTypes.h */; };
+		18B684FB06944F2000CC6A1E /* PublicTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 18B684F406944F2000CC6A1E /* PublicTypes.h */; };
+		18B684FF06944F8800CC6A1E /* 4DPlugin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18B684FE06944F8800CC6A1E /* 4DPlugin.cpp */; settings = {COMPILER_FLAGS = "-w"; }; };
+		8D01CCC80486CAD60068D4B7 /* 4D Plugin_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 32BAE0B30371A71500C91783 /* 4D Plugin_Prefix.pch */; };
+		8D01CCCA0486CAD60068D4B7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C167DFE841241C02AAC07 /* InfoPlist.strings */; };
+		D120937F13534DCC00A72CAA /* 4DPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = D120937E13534DCC00A72CAA /* 4DPlugin.h */; };
+		D130064F12F02D9700702C0E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D130064E12F02D9700702C0E /* Cocoa.framework */; };
+		D13116A91A03ACB700DE1322 /* 4DPluginAPI.c in Sources */ = {isa = PBXBuildFile; fileRef = D13116A81A03ACB700DE1322 /* 4DPluginAPI.c */; settings = {COMPILER_FLAGS = "-w"; }; };
+		D13116AC1A03B10800DE1322 /* C_LONGINT.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D13116AA1A03B10800DE1322 /* C_LONGINT.cpp */; };
+		D13116AD1A03B10800DE1322 /* C_LONGINT.h in Headers */ = {isa = PBXBuildFile; fileRef = D13116AB1A03B10800DE1322 /* C_LONGINT.h */; };
+		D13116B01A03B33D00DE1322 /* C_INTEGER.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D13116AE1A03B33D00DE1322 /* C_INTEGER.cpp */; };
+		D13116B11A03B33D00DE1322 /* C_INTEGER.h in Headers */ = {isa = PBXBuildFile; fileRef = D13116AF1A03B33D00DE1322 /* C_INTEGER.h */; };
+		D13116B81A03B3C300DE1322 /* C_DATE.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D13116B21A03B3C300DE1322 /* C_DATE.cpp */; };
+		D13116B91A03B3C300DE1322 /* C_DATE.h in Headers */ = {isa = PBXBuildFile; fileRef = D13116B31A03B3C300DE1322 /* C_DATE.h */; };
+		D13116BA1A03B3C300DE1322 /* C_REAL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D13116B41A03B3C300DE1322 /* C_REAL.cpp */; };
+		D13116BB1A03B3C300DE1322 /* C_REAL.h in Headers */ = {isa = PBXBuildFile; fileRef = D13116B51A03B3C300DE1322 /* C_REAL.h */; };
+		D13116BC1A03B3C300DE1322 /* C_TIME.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D13116B61A03B3C300DE1322 /* C_TIME.cpp */; };
+		D13116BD1A03B3C300DE1322 /* C_TIME.h in Headers */ = {isa = PBXBuildFile; fileRef = D13116B71A03B3C300DE1322 /* C_TIME.h */; };
+		D13116C41A03B48900DE1322 /* C_TEXT.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D13116C21A03B48900DE1322 /* C_TEXT.cpp */; settings = {COMPILER_FLAGS = "-w"; }; };
+		D13116C51A03B48900DE1322 /* C_TEXT.h in Headers */ = {isa = PBXBuildFile; fileRef = D13116C31A03B48900DE1322 /* C_TEXT.h */; };
+		D13116C71A03B5B600DE1322 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D13116C61A03B5B600DE1322 /* AppKit.framework */; };
+		D13116CA1A03B5CC00DE1322 /* C_POINTER.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D13116C81A03B5CC00DE1322 /* C_POINTER.cpp */; };
+		D13116CB1A03B5CC00DE1322 /* C_POINTER.h in Headers */ = {isa = PBXBuildFile; fileRef = D13116C91A03B5CC00DE1322 /* C_POINTER.h */; };
+		D13116CE1A03B62400DE1322 /* C_PICTURE.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D13116CC1A03B62400DE1322 /* C_PICTURE.cpp */; settings = {COMPILER_FLAGS = "-w"; }; };
+		D13116CF1A03B62400DE1322 /* C_PICTURE.h in Headers */ = {isa = PBXBuildFile; fileRef = D13116CD1A03B62400DE1322 /* C_PICTURE.h */; };
+		D13116D81A03BBFC00DE1322 /* ARRAY_TEXT.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D13116D61A03BBFC00DE1322 /* ARRAY_TEXT.cpp */; settings = {COMPILER_FLAGS = "-w"; }; };
+		D13116D91A03BBFC00DE1322 /* ARRAY_TEXT.h in Headers */ = {isa = PBXBuildFile; fileRef = D13116D71A03BBFC00DE1322 /* ARRAY_TEXT.h */; };
+		D13116E21A03BC1100DE1322 /* ARRAY_BOOLEAN.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D13116DA1A03BC1100DE1322 /* ARRAY_BOOLEAN.cpp */; };
+		D13116E31A03BC1100DE1322 /* ARRAY_BOOLEAN.h in Headers */ = {isa = PBXBuildFile; fileRef = D13116DB1A03BC1100DE1322 /* ARRAY_BOOLEAN.h */; };
+		D13116E41A03BC1100DE1322 /* ARRAY_INTEGER.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D13116DC1A03BC1100DE1322 /* ARRAY_INTEGER.cpp */; };
+		D13116E51A03BC1100DE1322 /* ARRAY_INTEGER.h in Headers */ = {isa = PBXBuildFile; fileRef = D13116DD1A03BC1100DE1322 /* ARRAY_INTEGER.h */; };
+		D13116E61A03BC1100DE1322 /* ARRAY_LONGINT.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D13116DE1A03BC1100DE1322 /* ARRAY_LONGINT.cpp */; };
+		D13116E71A03BC1100DE1322 /* ARRAY_LONGINT.h in Headers */ = {isa = PBXBuildFile; fileRef = D13116DF1A03BC1100DE1322 /* ARRAY_LONGINT.h */; };
+		D13116E81A03BC1100DE1322 /* ARRAY_REAL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D13116E01A03BC1100DE1322 /* ARRAY_REAL.cpp */; };
+		D13116E91A03BC1100DE1322 /* ARRAY_REAL.h in Headers */ = {isa = PBXBuildFile; fileRef = D13116E11A03BC1100DE1322 /* ARRAY_REAL.h */; };
+		D13116EC1A03BE2300DE1322 /* ARRAY_TIME.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D13116EA1A03BE2300DE1322 /* ARRAY_TIME.cpp */; };
+		D13116ED1A03BE2300DE1322 /* ARRAY_TIME.h in Headers */ = {isa = PBXBuildFile; fileRef = D13116EB1A03BE2300DE1322 /* ARRAY_TIME.h */; };
+		D13116F01A03C2D400DE1322 /* C_BLOB.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D13116EE1A03C2D400DE1322 /* C_BLOB.cpp */; settings = {COMPILER_FLAGS = "-w"; }; };
+		D13116F11A03C2D400DE1322 /* C_BLOB.h in Headers */ = {isa = PBXBuildFile; fileRef = D13116EF1A03C2D400DE1322 /* C_BLOB.h */; };
+		D13116F41A03C7AF00DE1322 /* ARRAY_DATE.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D13116F21A03C7AF00DE1322 /* ARRAY_DATE.cpp */; };
+		D13116F51A03C7AF00DE1322 /* ARRAY_DATE.h in Headers */ = {isa = PBXBuildFile; fileRef = D13116F31A03C7AF00DE1322 /* ARRAY_DATE.h */; };
+		D134D4AC1A030BA0008D14EF /* manifest.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = D134D4A91A030B06008D14EF /* manifest.json */; };
+		D175D9CD1A02E8DD0006B569 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D175D9CC1A02E8DD0006B569 /* CoreGraphics.framework */; };
+		D1AB7811200CD4FF00E66FCB /* libstudxml.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1AB780F200CD4FF00E66FCB /* libstudxml.a */; };
+		D1AB7812200CD4FF00E66FCB /* libxlnt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1AB7810200CD4FF00E66FCB /* libxlnt.a */; };
+		D1AB7856200CD50400E66FCB /* cell.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D1AB7816200CD50400E66FCB /* cell.hpp */; };
+		D1AB7857200CD50400E66FCB /* cell_reference.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D1AB7817200CD50400E66FCB /* cell_reference.hpp */; };
+		D1AB7858200CD50400E66FCB /* cell_type.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D1AB7818200CD50400E66FCB /* cell_type.hpp */; };
+		D1AB7859200CD50400E66FCB /* comment.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D1AB7819200CD50400E66FCB /* comment.hpp */; };
+		D1AB785A200CD50400E66FCB /* index_types.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D1AB781A200CD50400E66FCB /* index_types.hpp */; };
+		D1AB785B200CD50400E66FCB /* rich_text.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D1AB781B200CD50400E66FCB /* rich_text.hpp */; };
+		D1AB785C200CD50400E66FCB /* rich_text_run.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D1AB781C200CD50400E66FCB /* rich_text_run.hpp */; };
+		D1AB785D200CD50400E66FCB /* manifest.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D1AB781E200CD50400E66FCB /* manifest.hpp */; };
+		D1AB785E200CD50400E66FCB /* relationship.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D1AB781F200CD50400E66FCB /* relationship.hpp */; };
+		D1AB785F200CD50400E66FCB /* uri.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D1AB7820200CD50400E66FCB /* uri.hpp */; };
+		D1AB7860200CD50400E66FCB /* alignment.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D1AB7822200CD50400E66FCB /* alignment.hpp */; };
+		D1AB7861200CD50400E66FCB /* border.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D1AB7823200CD50400E66FCB /* border.hpp */; };
+		D1AB7862200CD50400E66FCB /* color.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D1AB7824200CD50400E66FCB /* color.hpp */; };
+		D1AB7863200CD50400E66FCB /* conditional_format.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D1AB7825200CD50400E66FCB /* conditional_format.hpp */; };
+		D1AB7864200CD50400E66FCB /* fill.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D1AB7826200CD50400E66FCB /* fill.hpp */; };
+		D1AB7865200CD50400E66FCB /* font.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D1AB7827200CD50400E66FCB /* font.hpp */; };
+		D1AB7866200CD50400E66FCB /* format.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D1AB7828200CD50400E66FCB /* format.hpp */; };
+		D1AB7867200CD50400E66FCB /* number_format.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D1AB7829200CD50400E66FCB /* number_format.hpp */; };
+		D1AB7868200CD50400E66FCB /* protection.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D1AB782A200CD50400E66FCB /* protection.hpp */; };
+		D1AB7869200CD50400E66FCB /* style.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D1AB782B200CD50400E66FCB /* style.hpp */; };
+		D1AB786A200CD50400E66FCB /* calendar.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D1AB782D200CD50400E66FCB /* calendar.hpp */; };
+		D1AB786B200CD50400E66FCB /* date.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D1AB782E200CD50400E66FCB /* date.hpp */; };
+		D1AB786C200CD50400E66FCB /* datetime.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D1AB782F200CD50400E66FCB /* datetime.hpp */; };
+		D1AB786D200CD50400E66FCB /* exceptions.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D1AB7830200CD50400E66FCB /* exceptions.hpp */; };
+		D1AB786E200CD50400E66FCB /* optional.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D1AB7831200CD50400E66FCB /* optional.hpp */; };
+		D1AB786F200CD50400E66FCB /* path.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D1AB7832200CD50400E66FCB /* path.hpp */; };
+		D1AB7870200CD50400E66FCB /* scoped_enum_hash.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D1AB7833200CD50400E66FCB /* scoped_enum_hash.hpp */; };
+		D1AB7871200CD50400E66FCB /* time.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D1AB7834200CD50400E66FCB /* time.hpp */; };
+		D1AB7872200CD50400E66FCB /* timedelta.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D1AB7835200CD50400E66FCB /* timedelta.hpp */; };
+		D1AB7873200CD50400E66FCB /* variant.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D1AB7836200CD50400E66FCB /* variant.hpp */; };
+		D1AB7874200CD50400E66FCB /* calculation_properties.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D1AB7838200CD50400E66FCB /* calculation_properties.hpp */; };
+		D1AB7875200CD50400E66FCB /* document_security.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D1AB7839200CD50400E66FCB /* document_security.hpp */; };
+		D1AB7876200CD50400E66FCB /* external_book.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D1AB783A200CD50400E66FCB /* external_book.hpp */; };
+		D1AB7877200CD50400E66FCB /* metadata_property.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D1AB783B200CD50400E66FCB /* metadata_property.hpp */; };
+		D1AB7878200CD50400E66FCB /* named_range.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D1AB783C200CD50400E66FCB /* named_range.hpp */; };
+		D1AB7879200CD50400E66FCB /* streaming_workbook_reader.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D1AB783D200CD50400E66FCB /* streaming_workbook_reader.hpp */; };
+		D1AB787A200CD50400E66FCB /* streaming_workbook_writer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D1AB783E200CD50400E66FCB /* streaming_workbook_writer.hpp */; };
+		D1AB787B200CD50400E66FCB /* theme.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D1AB783F200CD50400E66FCB /* theme.hpp */; };
+		D1AB787C200CD50400E66FCB /* workbook.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D1AB7840200CD50400E66FCB /* workbook.hpp */; };
+		D1AB787D200CD50400E66FCB /* workbook_view.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D1AB7841200CD50400E66FCB /* workbook_view.hpp */; };
+		D1AB787E200CD50400E66FCB /* worksheet_iterator.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D1AB7842200CD50400E66FCB /* worksheet_iterator.hpp */; };
+		D1AB787F200CD50400E66FCB /* cell_iterator.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D1AB7844200CD50400E66FCB /* cell_iterator.hpp */; };
+		D1AB7880200CD50400E66FCB /* cell_vector.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D1AB7845200CD50400E66FCB /* cell_vector.hpp */; };
+		D1AB7881200CD50400E66FCB /* column_properties.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D1AB7846200CD50400E66FCB /* column_properties.hpp */; };
+		D1AB7882200CD50400E66FCB /* header_footer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D1AB7847200CD50400E66FCB /* header_footer.hpp */; };
+		D1AB7883200CD50400E66FCB /* major_order.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D1AB7848200CD50400E66FCB /* major_order.hpp */; };
+		D1AB7884200CD50400E66FCB /* page_margins.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D1AB7849200CD50400E66FCB /* page_margins.hpp */; };
+		D1AB7885200CD50400E66FCB /* page_setup.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D1AB784A200CD50400E66FCB /* page_setup.hpp */; };
+		D1AB7886200CD50400E66FCB /* pane.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D1AB784B200CD50400E66FCB /* pane.hpp */; };
+		D1AB7887200CD50400E66FCB /* range.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D1AB784C200CD50400E66FCB /* range.hpp */; };
+		D1AB7888200CD50400E66FCB /* range_iterator.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D1AB784D200CD50400E66FCB /* range_iterator.hpp */; };
+		D1AB7889200CD50400E66FCB /* range_reference.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D1AB784E200CD50400E66FCB /* range_reference.hpp */; };
+		D1AB788A200CD50400E66FCB /* row_properties.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D1AB784F200CD50400E66FCB /* row_properties.hpp */; };
+		D1AB788B200CD50400E66FCB /* selection.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D1AB7850200CD50400E66FCB /* selection.hpp */; };
+		D1AB788C200CD50400E66FCB /* sheet_protection.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D1AB7851200CD50400E66FCB /* sheet_protection.hpp */; };
+		D1AB788D200CD50400E66FCB /* sheet_view.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D1AB7852200CD50400E66FCB /* sheet_view.hpp */; };
+		D1AB788E200CD50400E66FCB /* worksheet.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D1AB7853200CD50400E66FCB /* worksheet.hpp */; };
+		D1AB788F200CD50400E66FCB /* xlnt.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D1AB7854200CD50400E66FCB /* xlnt.hpp */; };
+		D1AB7890200CD50400E66FCB /* xlnt_config.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D1AB7855200CD50400E66FCB /* xlnt_config.hpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D134D4AB1A030B7A008D14EF /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = ..;
+			dstSubfolderSpec = 7;
+			files = (
+				D134D4AC1A030BA0008D14EF /* manifest.json in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		089C167EFE841241C02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		189286350695AD8900B05D6E /* xlnt.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = xlnt.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		18B684F006944F2000CC6A1E /* 4DPluginAPI.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = 4DPluginAPI.h; sourceTree = "<group>"; };
+		18B684F106944F2000CC6A1E /* EntryPoints.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = EntryPoints.h; sourceTree = "<group>"; };
+		18B684F206944F2000CC6A1E /* Flags.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = Flags.h; sourceTree = "<group>"; };
+		18B684F306944F2000CC6A1E /* PrivateTypes.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = PrivateTypes.h; sourceTree = "<group>"; };
+		18B684F406944F2000CC6A1E /* PublicTypes.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = PublicTypes.h; sourceTree = "<group>"; };
+		18B684FE06944F8800CC6A1E /* 4DPlugin.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 30; path = 4DPlugin.cpp; sourceTree = "<group>"; };
+		32BAE0B30371A71500C91783 /* 4D Plugin_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "4D Plugin_Prefix.pch"; sourceTree = "<group>"; };
+		8D01CCD10486CAD60068D4B7 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		D120937E13534DCC00A72CAA /* 4DPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = 4DPlugin.h; sourceTree = "<group>"; };
+		D130064E12F02D9700702C0E /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		D13116A81A03ACB700DE1322 /* 4DPluginAPI.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = 4DPluginAPI.c; sourceTree = "<group>"; };
+		D13116AA1A03B10800DE1322 /* C_LONGINT.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = C_LONGINT.cpp; path = Classes/C_LONGINT.cpp; sourceTree = "<group>"; };
+		D13116AB1A03B10800DE1322 /* C_LONGINT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = C_LONGINT.h; path = Classes/C_LONGINT.h; sourceTree = "<group>"; };
+		D13116AE1A03B33D00DE1322 /* C_INTEGER.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = C_INTEGER.cpp; path = Classes/C_INTEGER.cpp; sourceTree = "<group>"; };
+		D13116AF1A03B33D00DE1322 /* C_INTEGER.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = C_INTEGER.h; path = Classes/C_INTEGER.h; sourceTree = "<group>"; };
+		D13116B21A03B3C300DE1322 /* C_DATE.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = C_DATE.cpp; path = Classes/C_DATE.cpp; sourceTree = "<group>"; };
+		D13116B31A03B3C300DE1322 /* C_DATE.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = C_DATE.h; path = Classes/C_DATE.h; sourceTree = "<group>"; };
+		D13116B41A03B3C300DE1322 /* C_REAL.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = C_REAL.cpp; path = Classes/C_REAL.cpp; sourceTree = "<group>"; };
+		D13116B51A03B3C300DE1322 /* C_REAL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = C_REAL.h; path = Classes/C_REAL.h; sourceTree = "<group>"; };
+		D13116B61A03B3C300DE1322 /* C_TIME.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = C_TIME.cpp; path = Classes/C_TIME.cpp; sourceTree = "<group>"; };
+		D13116B71A03B3C300DE1322 /* C_TIME.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = C_TIME.h; path = Classes/C_TIME.h; sourceTree = "<group>"; };
+		D13116C21A03B48900DE1322 /* C_TEXT.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = C_TEXT.cpp; path = Classes/C_TEXT.cpp; sourceTree = "<group>"; };
+		D13116C31A03B48900DE1322 /* C_TEXT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = C_TEXT.h; path = Classes/C_TEXT.h; sourceTree = "<group>"; };
+		D13116C61A03B5B600DE1322 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		D13116C81A03B5CC00DE1322 /* C_POINTER.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = C_POINTER.cpp; path = Classes/C_POINTER.cpp; sourceTree = "<group>"; };
+		D13116C91A03B5CC00DE1322 /* C_POINTER.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = C_POINTER.h; path = Classes/C_POINTER.h; sourceTree = "<group>"; };
+		D13116CC1A03B62400DE1322 /* C_PICTURE.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = C_PICTURE.cpp; path = Classes/C_PICTURE.cpp; sourceTree = "<group>"; };
+		D13116CD1A03B62400DE1322 /* C_PICTURE.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = C_PICTURE.h; path = Classes/C_PICTURE.h; sourceTree = "<group>"; };
+		D13116D61A03BBFC00DE1322 /* ARRAY_TEXT.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = ARRAY_TEXT.cpp; path = Classes/ARRAY_TEXT.cpp; sourceTree = "<group>"; };
+		D13116D71A03BBFC00DE1322 /* ARRAY_TEXT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARRAY_TEXT.h; path = Classes/ARRAY_TEXT.h; sourceTree = "<group>"; };
+		D13116DA1A03BC1100DE1322 /* ARRAY_BOOLEAN.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = ARRAY_BOOLEAN.cpp; path = Classes/ARRAY_BOOLEAN.cpp; sourceTree = "<group>"; };
+		D13116DB1A03BC1100DE1322 /* ARRAY_BOOLEAN.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARRAY_BOOLEAN.h; path = Classes/ARRAY_BOOLEAN.h; sourceTree = "<group>"; };
+		D13116DC1A03BC1100DE1322 /* ARRAY_INTEGER.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = ARRAY_INTEGER.cpp; path = Classes/ARRAY_INTEGER.cpp; sourceTree = "<group>"; };
+		D13116DD1A03BC1100DE1322 /* ARRAY_INTEGER.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARRAY_INTEGER.h; path = Classes/ARRAY_INTEGER.h; sourceTree = "<group>"; };
+		D13116DE1A03BC1100DE1322 /* ARRAY_LONGINT.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = ARRAY_LONGINT.cpp; path = Classes/ARRAY_LONGINT.cpp; sourceTree = "<group>"; };
+		D13116DF1A03BC1100DE1322 /* ARRAY_LONGINT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARRAY_LONGINT.h; path = Classes/ARRAY_LONGINT.h; sourceTree = "<group>"; };
+		D13116E01A03BC1100DE1322 /* ARRAY_REAL.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = ARRAY_REAL.cpp; path = Classes/ARRAY_REAL.cpp; sourceTree = "<group>"; };
+		D13116E11A03BC1100DE1322 /* ARRAY_REAL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARRAY_REAL.h; path = Classes/ARRAY_REAL.h; sourceTree = "<group>"; };
+		D13116EA1A03BE2300DE1322 /* ARRAY_TIME.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = ARRAY_TIME.cpp; path = Classes/ARRAY_TIME.cpp; sourceTree = "<group>"; };
+		D13116EB1A03BE2300DE1322 /* ARRAY_TIME.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARRAY_TIME.h; path = Classes/ARRAY_TIME.h; sourceTree = "<group>"; };
+		D13116EE1A03C2D400DE1322 /* C_BLOB.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = C_BLOB.cpp; path = Classes/C_BLOB.cpp; sourceTree = "<group>"; };
+		D13116EF1A03C2D400DE1322 /* C_BLOB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = C_BLOB.h; path = Classes/C_BLOB.h; sourceTree = "<group>"; };
+		D13116F21A03C7AF00DE1322 /* ARRAY_DATE.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = ARRAY_DATE.cpp; path = Classes/ARRAY_DATE.cpp; sourceTree = "<group>"; };
+		D13116F31A03C7AF00DE1322 /* ARRAY_DATE.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARRAY_DATE.h; path = Classes/ARRAY_DATE.h; sourceTree = "<group>"; };
+		D134D4A91A030B06008D14EF /* manifest.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = manifest.json; sourceTree = "<group>"; };
+		D14D10DD1A03A8A5008B3411 /* constants.xlf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = constants.xlf; sourceTree = "<group>"; };
+		D175D9CC1A02E8DD0006B569 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		D1AB780F200CD4FF00E66FCB /* libstudxml.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libstudxml.a; sourceTree = "<group>"; };
+		D1AB7810200CD4FF00E66FCB /* libxlnt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libxlnt.a; sourceTree = "<group>"; };
+		D1AB7816200CD50400E66FCB /* cell.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cell.hpp; sourceTree = "<group>"; };
+		D1AB7817200CD50400E66FCB /* cell_reference.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cell_reference.hpp; sourceTree = "<group>"; };
+		D1AB7818200CD50400E66FCB /* cell_type.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cell_type.hpp; sourceTree = "<group>"; };
+		D1AB7819200CD50400E66FCB /* comment.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = comment.hpp; sourceTree = "<group>"; };
+		D1AB781A200CD50400E66FCB /* index_types.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = index_types.hpp; sourceTree = "<group>"; };
+		D1AB781B200CD50400E66FCB /* rich_text.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = rich_text.hpp; sourceTree = "<group>"; };
+		D1AB781C200CD50400E66FCB /* rich_text_run.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = rich_text_run.hpp; sourceTree = "<group>"; };
+		D1AB781E200CD50400E66FCB /* manifest.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = manifest.hpp; sourceTree = "<group>"; };
+		D1AB781F200CD50400E66FCB /* relationship.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = relationship.hpp; sourceTree = "<group>"; };
+		D1AB7820200CD50400E66FCB /* uri.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = uri.hpp; sourceTree = "<group>"; };
+		D1AB7822200CD50400E66FCB /* alignment.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = alignment.hpp; sourceTree = "<group>"; };
+		D1AB7823200CD50400E66FCB /* border.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = border.hpp; sourceTree = "<group>"; };
+		D1AB7824200CD50400E66FCB /* color.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = color.hpp; sourceTree = "<group>"; };
+		D1AB7825200CD50400E66FCB /* conditional_format.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = conditional_format.hpp; sourceTree = "<group>"; };
+		D1AB7826200CD50400E66FCB /* fill.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = fill.hpp; sourceTree = "<group>"; };
+		D1AB7827200CD50400E66FCB /* font.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = font.hpp; sourceTree = "<group>"; };
+		D1AB7828200CD50400E66FCB /* format.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = format.hpp; sourceTree = "<group>"; };
+		D1AB7829200CD50400E66FCB /* number_format.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = number_format.hpp; sourceTree = "<group>"; };
+		D1AB782A200CD50400E66FCB /* protection.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = protection.hpp; sourceTree = "<group>"; };
+		D1AB782B200CD50400E66FCB /* style.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = style.hpp; sourceTree = "<group>"; };
+		D1AB782D200CD50400E66FCB /* calendar.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = calendar.hpp; sourceTree = "<group>"; };
+		D1AB782E200CD50400E66FCB /* date.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = date.hpp; sourceTree = "<group>"; };
+		D1AB782F200CD50400E66FCB /* datetime.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = datetime.hpp; sourceTree = "<group>"; };
+		D1AB7830200CD50400E66FCB /* exceptions.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = exceptions.hpp; sourceTree = "<group>"; };
+		D1AB7831200CD50400E66FCB /* optional.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = optional.hpp; sourceTree = "<group>"; };
+		D1AB7832200CD50400E66FCB /* path.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = path.hpp; sourceTree = "<group>"; };
+		D1AB7833200CD50400E66FCB /* scoped_enum_hash.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = scoped_enum_hash.hpp; sourceTree = "<group>"; };
+		D1AB7834200CD50400E66FCB /* time.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = time.hpp; sourceTree = "<group>"; };
+		D1AB7835200CD50400E66FCB /* timedelta.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = timedelta.hpp; sourceTree = "<group>"; };
+		D1AB7836200CD50400E66FCB /* variant.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = variant.hpp; sourceTree = "<group>"; };
+		D1AB7838200CD50400E66FCB /* calculation_properties.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = calculation_properties.hpp; sourceTree = "<group>"; };
+		D1AB7839200CD50400E66FCB /* document_security.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = document_security.hpp; sourceTree = "<group>"; };
+		D1AB783A200CD50400E66FCB /* external_book.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = external_book.hpp; sourceTree = "<group>"; };
+		D1AB783B200CD50400E66FCB /* metadata_property.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = metadata_property.hpp; sourceTree = "<group>"; };
+		D1AB783C200CD50400E66FCB /* named_range.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = named_range.hpp; sourceTree = "<group>"; };
+		D1AB783D200CD50400E66FCB /* streaming_workbook_reader.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = streaming_workbook_reader.hpp; sourceTree = "<group>"; };
+		D1AB783E200CD50400E66FCB /* streaming_workbook_writer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = streaming_workbook_writer.hpp; sourceTree = "<group>"; };
+		D1AB783F200CD50400E66FCB /* theme.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = theme.hpp; sourceTree = "<group>"; };
+		D1AB7840200CD50400E66FCB /* workbook.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = workbook.hpp; sourceTree = "<group>"; };
+		D1AB7841200CD50400E66FCB /* workbook_view.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = workbook_view.hpp; sourceTree = "<group>"; };
+		D1AB7842200CD50400E66FCB /* worksheet_iterator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = worksheet_iterator.hpp; sourceTree = "<group>"; };
+		D1AB7844200CD50400E66FCB /* cell_iterator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cell_iterator.hpp; sourceTree = "<group>"; };
+		D1AB7845200CD50400E66FCB /* cell_vector.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cell_vector.hpp; sourceTree = "<group>"; };
+		D1AB7846200CD50400E66FCB /* column_properties.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = column_properties.hpp; sourceTree = "<group>"; };
+		D1AB7847200CD50400E66FCB /* header_footer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = header_footer.hpp; sourceTree = "<group>"; };
+		D1AB7848200CD50400E66FCB /* major_order.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = major_order.hpp; sourceTree = "<group>"; };
+		D1AB7849200CD50400E66FCB /* page_margins.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = page_margins.hpp; sourceTree = "<group>"; };
+		D1AB784A200CD50400E66FCB /* page_setup.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = page_setup.hpp; sourceTree = "<group>"; };
+		D1AB784B200CD50400E66FCB /* pane.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = pane.hpp; sourceTree = "<group>"; };
+		D1AB784C200CD50400E66FCB /* range.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = range.hpp; sourceTree = "<group>"; };
+		D1AB784D200CD50400E66FCB /* range_iterator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = range_iterator.hpp; sourceTree = "<group>"; };
+		D1AB784E200CD50400E66FCB /* range_reference.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = range_reference.hpp; sourceTree = "<group>"; };
+		D1AB784F200CD50400E66FCB /* row_properties.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = row_properties.hpp; sourceTree = "<group>"; };
+		D1AB7850200CD50400E66FCB /* selection.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = selection.hpp; sourceTree = "<group>"; };
+		D1AB7851200CD50400E66FCB /* sheet_protection.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = sheet_protection.hpp; sourceTree = "<group>"; };
+		D1AB7852200CD50400E66FCB /* sheet_view.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = sheet_view.hpp; sourceTree = "<group>"; };
+		D1AB7853200CD50400E66FCB /* worksheet.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = worksheet.hpp; sourceTree = "<group>"; };
+		D1AB7854200CD50400E66FCB /* xlnt.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = xlnt.hpp; sourceTree = "<group>"; };
+		D1AB7855200CD50400E66FCB /* xlnt_config.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = xlnt_config.hpp; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8D01CCCD0486CAD60068D4B7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D13116C71A03B5B600DE1322 /* AppKit.framework in Frameworks */,
+				D175D9CD1A02E8DD0006B569 /* CoreGraphics.framework in Frameworks */,
+				D130064F12F02D9700702C0E /* Cocoa.framework in Frameworks */,
+				D1AB7812200CD4FF00E66FCB /* libxlnt.a in Frameworks */,
+				D1AB7811200CD4FF00E66FCB /* libstudxml.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		089C166AFE841209C02AAC07 /* xlnt */ = {
+			isa = PBXGroup;
+			children = (
+				D1AB7813200CD50400E66FCB /* include */,
+				D1AB780E200CD4FE00E66FCB /* a */,
+				D108BD7A1A03D1E6001F1B90 /* Manifest */,
+				08FB77ADFE841716C02AAC07 /* Source */,
+				089C167CFE841241C02AAC07 /* Resources */,
+				089C1671FE841209C02AAC07 /* External Frameworks and Libraries */,
+				189286360695AD8900B05D6E /* Products */,
+			);
+			name = xlnt;
+			sourceTree = "<group>";
+		};
+		089C1671FE841209C02AAC07 /* External Frameworks and Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				D13116C61A03B5B600DE1322 /* AppKit.framework */,
+				D175D9CC1A02E8DD0006B569 /* CoreGraphics.framework */,
+				D130064E12F02D9700702C0E /* Cocoa.framework */,
+			);
+			name = "External Frameworks and Libraries";
+			sourceTree = "<group>";
+		};
+		089C167CFE841241C02AAC07 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8D01CCD10486CAD60068D4B7 /* Info.plist */,
+				089C167DFE841241C02AAC07 /* InfoPlist.strings */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		08FB77ADFE841716C02AAC07 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				18B684FE06944F8800CC6A1E /* 4DPlugin.cpp */,
+				D120937E13534DCC00A72CAA /* 4DPlugin.h */,
+				18B684ED06944F2000CC6A1E /* 4D Plugin API */,
+				32BAE0B30371A71500C91783 /* 4D Plugin_Prefix.pch */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		189286360695AD8900B05D6E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				189286350695AD8900B05D6E /* xlnt.bundle */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		18B684ED06944F2000CC6A1E /* 4D Plugin API */ = {
+			isa = PBXGroup;
+			children = (
+				D19CC171135378140004336E /* Classes */,
+				D13116A81A03ACB700DE1322 /* 4DPluginAPI.c */,
+				18B684F006944F2000CC6A1E /* 4DPluginAPI.h */,
+				18B684F106944F2000CC6A1E /* EntryPoints.h */,
+				18B684F206944F2000CC6A1E /* Flags.h */,
+				18B684F306944F2000CC6A1E /* PrivateTypes.h */,
+				18B684F406944F2000CC6A1E /* PublicTypes.h */,
+			);
+			path = "4D Plugin API";
+			sourceTree = "<group>";
+		};
+		D108BD7A1A03D1E6001F1B90 /* Manifest */ = {
+			isa = PBXGroup;
+			children = (
+				D134D4A91A030B06008D14EF /* manifest.json */,
+				D14D10DD1A03A8A5008B3411 /* constants.xlf */,
+			);
+			name = Manifest;
+			sourceTree = "<group>";
+		};
+		D13116D01A03BBA100DE1322 /* C */ = {
+			isa = PBXGroup;
+			children = (
+				D13116EE1A03C2D400DE1322 /* C_BLOB.cpp */,
+				D13116EF1A03C2D400DE1322 /* C_BLOB.h */,
+				D13116C81A03B5CC00DE1322 /* C_POINTER.cpp */,
+				D13116C91A03B5CC00DE1322 /* C_POINTER.h */,
+				D13116C21A03B48900DE1322 /* C_TEXT.cpp */,
+				D13116C31A03B48900DE1322 /* C_TEXT.h */,
+				D13116B21A03B3C300DE1322 /* C_DATE.cpp */,
+				D13116B31A03B3C300DE1322 /* C_DATE.h */,
+				D13116B41A03B3C300DE1322 /* C_REAL.cpp */,
+				D13116B51A03B3C300DE1322 /* C_REAL.h */,
+				D13116B61A03B3C300DE1322 /* C_TIME.cpp */,
+				D13116B71A03B3C300DE1322 /* C_TIME.h */,
+				D13116AA1A03B10800DE1322 /* C_LONGINT.cpp */,
+				D13116AB1A03B10800DE1322 /* C_LONGINT.h */,
+				D13116AE1A03B33D00DE1322 /* C_INTEGER.cpp */,
+				D13116AF1A03B33D00DE1322 /* C_INTEGER.h */,
+				D13116CC1A03B62400DE1322 /* C_PICTURE.cpp */,
+				D13116CD1A03B62400DE1322 /* C_PICTURE.h */,
+			);
+			name = C;
+			sourceTree = "<group>";
+		};
+		D13116D11A03BBB800DE1322 /* ARRAY */ = {
+			isa = PBXGroup;
+			children = (
+				D13116EA1A03BE2300DE1322 /* ARRAY_TIME.cpp */,
+				D13116EB1A03BE2300DE1322 /* ARRAY_TIME.h */,
+				D13116DA1A03BC1100DE1322 /* ARRAY_BOOLEAN.cpp */,
+				D13116DB1A03BC1100DE1322 /* ARRAY_BOOLEAN.h */,
+				D13116DC1A03BC1100DE1322 /* ARRAY_INTEGER.cpp */,
+				D13116DD1A03BC1100DE1322 /* ARRAY_INTEGER.h */,
+				D13116DE1A03BC1100DE1322 /* ARRAY_LONGINT.cpp */,
+				D13116DF1A03BC1100DE1322 /* ARRAY_LONGINT.h */,
+				D13116E01A03BC1100DE1322 /* ARRAY_REAL.cpp */,
+				D13116E11A03BC1100DE1322 /* ARRAY_REAL.h */,
+				D13116F21A03C7AF00DE1322 /* ARRAY_DATE.cpp */,
+				D13116F31A03C7AF00DE1322 /* ARRAY_DATE.h */,
+				D13116D61A03BBFC00DE1322 /* ARRAY_TEXT.cpp */,
+				D13116D71A03BBFC00DE1322 /* ARRAY_TEXT.h */,
+			);
+			name = ARRAY;
+			sourceTree = "<group>";
+		};
+		D19CC171135378140004336E /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				D13116D11A03BBB800DE1322 /* ARRAY */,
+				D13116D01A03BBA100DE1322 /* C */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		D1AB780E200CD4FE00E66FCB /* a */ = {
+			isa = PBXGroup;
+			children = (
+				D1AB780F200CD4FF00E66FCB /* libstudxml.a */,
+				D1AB7810200CD4FF00E66FCB /* libxlnt.a */,
+			);
+			path = a;
+			sourceTree = "<group>";
+		};
+		D1AB7813200CD50400E66FCB /* include */ = {
+			isa = PBXGroup;
+			children = (
+				D1AB7814200CD50400E66FCB /* xlnt */,
+			);
+			path = include;
+			sourceTree = SOURCE_ROOT;
+		};
+		D1AB7814200CD50400E66FCB /* xlnt */ = {
+			isa = PBXGroup;
+			children = (
+				D1AB7815200CD50400E66FCB /* cell */,
+				D1AB781D200CD50400E66FCB /* packaging */,
+				D1AB7821200CD50400E66FCB /* styles */,
+				D1AB782C200CD50400E66FCB /* utils */,
+				D1AB7837200CD50400E66FCB /* workbook */,
+				D1AB7843200CD50400E66FCB /* worksheet */,
+				D1AB7854200CD50400E66FCB /* xlnt.hpp */,
+				D1AB7855200CD50400E66FCB /* xlnt_config.hpp */,
+			);
+			path = xlnt;
+			sourceTree = "<group>";
+		};
+		D1AB7815200CD50400E66FCB /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				D1AB7816200CD50400E66FCB /* cell.hpp */,
+				D1AB7817200CD50400E66FCB /* cell_reference.hpp */,
+				D1AB7818200CD50400E66FCB /* cell_type.hpp */,
+				D1AB7819200CD50400E66FCB /* comment.hpp */,
+				D1AB781A200CD50400E66FCB /* index_types.hpp */,
+				D1AB781B200CD50400E66FCB /* rich_text.hpp */,
+				D1AB781C200CD50400E66FCB /* rich_text_run.hpp */,
+			);
+			path = cell;
+			sourceTree = "<group>";
+		};
+		D1AB781D200CD50400E66FCB /* packaging */ = {
+			isa = PBXGroup;
+			children = (
+				D1AB781E200CD50400E66FCB /* manifest.hpp */,
+				D1AB781F200CD50400E66FCB /* relationship.hpp */,
+				D1AB7820200CD50400E66FCB /* uri.hpp */,
+			);
+			path = packaging;
+			sourceTree = "<group>";
+		};
+		D1AB7821200CD50400E66FCB /* styles */ = {
+			isa = PBXGroup;
+			children = (
+				D1AB7822200CD50400E66FCB /* alignment.hpp */,
+				D1AB7823200CD50400E66FCB /* border.hpp */,
+				D1AB7824200CD50400E66FCB /* color.hpp */,
+				D1AB7825200CD50400E66FCB /* conditional_format.hpp */,
+				D1AB7826200CD50400E66FCB /* fill.hpp */,
+				D1AB7827200CD50400E66FCB /* font.hpp */,
+				D1AB7828200CD50400E66FCB /* format.hpp */,
+				D1AB7829200CD50400E66FCB /* number_format.hpp */,
+				D1AB782A200CD50400E66FCB /* protection.hpp */,
+				D1AB782B200CD50400E66FCB /* style.hpp */,
+			);
+			path = styles;
+			sourceTree = "<group>";
+		};
+		D1AB782C200CD50400E66FCB /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				D1AB782D200CD50400E66FCB /* calendar.hpp */,
+				D1AB782E200CD50400E66FCB /* date.hpp */,
+				D1AB782F200CD50400E66FCB /* datetime.hpp */,
+				D1AB7830200CD50400E66FCB /* exceptions.hpp */,
+				D1AB7831200CD50400E66FCB /* optional.hpp */,
+				D1AB7832200CD50400E66FCB /* path.hpp */,
+				D1AB7833200CD50400E66FCB /* scoped_enum_hash.hpp */,
+				D1AB7834200CD50400E66FCB /* time.hpp */,
+				D1AB7835200CD50400E66FCB /* timedelta.hpp */,
+				D1AB7836200CD50400E66FCB /* variant.hpp */,
+			);
+			path = utils;
+			sourceTree = "<group>";
+		};
+		D1AB7837200CD50400E66FCB /* workbook */ = {
+			isa = PBXGroup;
+			children = (
+				D1AB7838200CD50400E66FCB /* calculation_properties.hpp */,
+				D1AB7839200CD50400E66FCB /* document_security.hpp */,
+				D1AB783A200CD50400E66FCB /* external_book.hpp */,
+				D1AB783B200CD50400E66FCB /* metadata_property.hpp */,
+				D1AB783C200CD50400E66FCB /* named_range.hpp */,
+				D1AB783D200CD50400E66FCB /* streaming_workbook_reader.hpp */,
+				D1AB783E200CD50400E66FCB /* streaming_workbook_writer.hpp */,
+				D1AB783F200CD50400E66FCB /* theme.hpp */,
+				D1AB7840200CD50400E66FCB /* workbook.hpp */,
+				D1AB7841200CD50400E66FCB /* workbook_view.hpp */,
+				D1AB7842200CD50400E66FCB /* worksheet_iterator.hpp */,
+			);
+			path = workbook;
+			sourceTree = "<group>";
+		};
+		D1AB7843200CD50400E66FCB /* worksheet */ = {
+			isa = PBXGroup;
+			children = (
+				D1AB7844200CD50400E66FCB /* cell_iterator.hpp */,
+				D1AB7845200CD50400E66FCB /* cell_vector.hpp */,
+				D1AB7846200CD50400E66FCB /* column_properties.hpp */,
+				D1AB7847200CD50400E66FCB /* header_footer.hpp */,
+				D1AB7848200CD50400E66FCB /* major_order.hpp */,
+				D1AB7849200CD50400E66FCB /* page_margins.hpp */,
+				D1AB784A200CD50400E66FCB /* page_setup.hpp */,
+				D1AB784B200CD50400E66FCB /* pane.hpp */,
+				D1AB784C200CD50400E66FCB /* range.hpp */,
+				D1AB784D200CD50400E66FCB /* range_iterator.hpp */,
+				D1AB784E200CD50400E66FCB /* range_reference.hpp */,
+				D1AB784F200CD50400E66FCB /* row_properties.hpp */,
+				D1AB7850200CD50400E66FCB /* selection.hpp */,
+				D1AB7851200CD50400E66FCB /* sheet_protection.hpp */,
+				D1AB7852200CD50400E66FCB /* sheet_view.hpp */,
+				D1AB7853200CD50400E66FCB /* worksheet.hpp */,
+			);
+			path = worksheet;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		8D01CCC70486CAD60068D4B7 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D1AB787C200CD50400E66FCB /* workbook.hpp in Headers */,
+				D1AB7867200CD50400E66FCB /* number_format.hpp in Headers */,
+				8D01CCC80486CAD60068D4B7 /* 4D Plugin_Prefix.pch in Headers */,
+				D1AB7885200CD50400E66FCB /* page_setup.hpp in Headers */,
+				D13116F11A03C2D400DE1322 /* C_BLOB.h in Headers */,
+				D1AB7871200CD50400E66FCB /* time.hpp in Headers */,
+				D1AB7876200CD50400E66FCB /* external_book.hpp in Headers */,
+				D1AB787D200CD50400E66FCB /* workbook_view.hpp in Headers */,
+				D1AB786D200CD50400E66FCB /* exceptions.hpp in Headers */,
+				D13116D91A03BBFC00DE1322 /* ARRAY_TEXT.h in Headers */,
+				18B684F706944F2000CC6A1E /* 4DPluginAPI.h in Headers */,
+				D13116B91A03B3C300DE1322 /* C_DATE.h in Headers */,
+				D13116BD1A03B3C300DE1322 /* C_TIME.h in Headers */,
+				D1AB788D200CD50400E66FCB /* sheet_view.hpp in Headers */,
+				D1AB7858200CD50400E66FCB /* cell_type.hpp in Headers */,
+				D1AB788E200CD50400E66FCB /* worksheet.hpp in Headers */,
+				D1AB7856200CD50400E66FCB /* cell.hpp in Headers */,
+				D1AB788C200CD50400E66FCB /* sheet_protection.hpp in Headers */,
+				D1AB7874200CD50400E66FCB /* calculation_properties.hpp in Headers */,
+				D1AB788A200CD50400E66FCB /* row_properties.hpp in Headers */,
+				D1AB7857200CD50400E66FCB /* cell_reference.hpp in Headers */,
+				18B684F806944F2000CC6A1E /* EntryPoints.h in Headers */,
+				D1AB7880200CD50400E66FCB /* cell_vector.hpp in Headers */,
+				18B684F906944F2000CC6A1E /* Flags.h in Headers */,
+				D13116E31A03BC1100DE1322 /* ARRAY_BOOLEAN.h in Headers */,
+				D1AB785F200CD50400E66FCB /* uri.hpp in Headers */,
+				D1AB7869200CD50400E66FCB /* style.hpp in Headers */,
+				D1AB7879200CD50400E66FCB /* streaming_workbook_reader.hpp in Headers */,
+				D1AB7889200CD50400E66FCB /* range_reference.hpp in Headers */,
+				D13116B11A03B33D00DE1322 /* C_INTEGER.h in Headers */,
+				D1AB786A200CD50400E66FCB /* calendar.hpp in Headers */,
+				D1AB7860200CD50400E66FCB /* alignment.hpp in Headers */,
+				D1AB7882200CD50400E66FCB /* header_footer.hpp in Headers */,
+				18B684FA06944F2000CC6A1E /* PrivateTypes.h in Headers */,
+				D1AB7875200CD50400E66FCB /* document_security.hpp in Headers */,
+				18B684FB06944F2000CC6A1E /* PublicTypes.h in Headers */,
+				D13116E91A03BC1100DE1322 /* ARRAY_REAL.h in Headers */,
+				D1AB786C200CD50400E66FCB /* datetime.hpp in Headers */,
+				D1AB7862200CD50400E66FCB /* color.hpp in Headers */,
+				D1AB786E200CD50400E66FCB /* optional.hpp in Headers */,
+				D13116ED1A03BE2300DE1322 /* ARRAY_TIME.h in Headers */,
+				D1AB7881200CD50400E66FCB /* column_properties.hpp in Headers */,
+				D1AB785B200CD50400E66FCB /* rich_text.hpp in Headers */,
+				D1AB785A200CD50400E66FCB /* index_types.hpp in Headers */,
+				D13116CB1A03B5CC00DE1322 /* C_POINTER.h in Headers */,
+				D1AB786F200CD50400E66FCB /* path.hpp in Headers */,
+				D13116BB1A03B3C300DE1322 /* C_REAL.h in Headers */,
+				D1AB7886200CD50400E66FCB /* pane.hpp in Headers */,
+				D1AB7884200CD50400E66FCB /* page_margins.hpp in Headers */,
+				D13116E71A03BC1100DE1322 /* ARRAY_LONGINT.h in Headers */,
+				D1AB7861200CD50400E66FCB /* border.hpp in Headers */,
+				D1AB787F200CD50400E66FCB /* cell_iterator.hpp in Headers */,
+				D1AB787A200CD50400E66FCB /* streaming_workbook_writer.hpp in Headers */,
+				D13116C51A03B48900DE1322 /* C_TEXT.h in Headers */,
+				D1AB7883200CD50400E66FCB /* major_order.hpp in Headers */,
+				D1AB7865200CD50400E66FCB /* font.hpp in Headers */,
+				D1AB785C200CD50400E66FCB /* rich_text_run.hpp in Headers */,
+				D1AB7878200CD50400E66FCB /* named_range.hpp in Headers */,
+				D1AB7877200CD50400E66FCB /* metadata_property.hpp in Headers */,
+				D1AB785E200CD50400E66FCB /* relationship.hpp in Headers */,
+				D1AB788F200CD50400E66FCB /* xlnt.hpp in Headers */,
+				D1AB786B200CD50400E66FCB /* date.hpp in Headers */,
+				D1AB7887200CD50400E66FCB /* range.hpp in Headers */,
+				D1AB7868200CD50400E66FCB /* protection.hpp in Headers */,
+				D1AB787E200CD50400E66FCB /* worksheet_iterator.hpp in Headers */,
+				D1AB7863200CD50400E66FCB /* conditional_format.hpp in Headers */,
+				D13116AD1A03B10800DE1322 /* C_LONGINT.h in Headers */,
+				D1AB785D200CD50400E66FCB /* manifest.hpp in Headers */,
+				D1AB7866200CD50400E66FCB /* format.hpp in Headers */,
+				D1AB7872200CD50400E66FCB /* timedelta.hpp in Headers */,
+				D120937F13534DCC00A72CAA /* 4DPlugin.h in Headers */,
+				D13116E51A03BC1100DE1322 /* ARRAY_INTEGER.h in Headers */,
+				D1AB7888200CD50400E66FCB /* range_iterator.hpp in Headers */,
+				D1AB787B200CD50400E66FCB /* theme.hpp in Headers */,
+				D1AB7890200CD50400E66FCB /* xlnt_config.hpp in Headers */,
+				D1AB788B200CD50400E66FCB /* selection.hpp in Headers */,
+				D1AB7870200CD50400E66FCB /* scoped_enum_hash.hpp in Headers */,
+				D13116F51A03C7AF00DE1322 /* ARRAY_DATE.h in Headers */,
+				D1AB7864200CD50400E66FCB /* fill.hpp in Headers */,
+				D1AB7873200CD50400E66FCB /* variant.hpp in Headers */,
+				D1AB7859200CD50400E66FCB /* comment.hpp in Headers */,
+				D13116CF1A03B62400DE1322 /* C_PICTURE.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		8D01CCC60486CAD60068D4B7 /* xlnt */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 42D60B3F0A9DDBC8002ABB42 /* Build configuration list for PBXNativeTarget "xlnt" */;
+			buildPhases = (
+				8D01CCC70486CAD60068D4B7 /* Headers */,
+				8D01CCC90486CAD60068D4B7 /* Resources */,
+				D134D4AB1A030B7A008D14EF /* CopyFiles */,
+				8D01CCCB0486CAD60068D4B7 /* Sources */,
+				8D01CCCD0486CAD60068D4B7 /* Frameworks */,
+				8D01CCCF0486CAD60068D4B7 /* Rez */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = xlnt;
+			productInstallPath = "$(HOME)/Library/Bundles";
+			productName = xlnt;
+			productReference = 189286350695AD8900B05D6E /* xlnt.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		089C1669FE841209C02AAC07 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0820;
+			};
+			buildConfigurationList = 42D60B430A9DDBC8002ABB42 /* Build configuration list for PBXProject "xlnt" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
+			mainGroup = 089C166AFE841209C02AAC07 /* xlnt */;
+			productRefGroup = 189286360695AD8900B05D6E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8D01CCC60486CAD60068D4B7 /* xlnt */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8D01CCC90486CAD60068D4B7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D01CCCA0486CAD60068D4B7 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXRezBuildPhase section */
+		8D01CCCF0486CAD60068D4B7 /* Rez */ = {
+			isa = PBXRezBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXRezBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8D01CCCB0486CAD60068D4B7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D13116AC1A03B10800DE1322 /* C_LONGINT.cpp in Sources */,
+				D13116E81A03BC1100DE1322 /* ARRAY_REAL.cpp in Sources */,
+				18B684FF06944F8800CC6A1E /* 4DPlugin.cpp in Sources */,
+				D13116D81A03BBFC00DE1322 /* ARRAY_TEXT.cpp in Sources */,
+				D13116B81A03B3C300DE1322 /* C_DATE.cpp in Sources */,
+				D13116E61A03BC1100DE1322 /* ARRAY_LONGINT.cpp in Sources */,
+				D13116E41A03BC1100DE1322 /* ARRAY_INTEGER.cpp in Sources */,
+				D13116BC1A03B3C300DE1322 /* C_TIME.cpp in Sources */,
+				D13116C41A03B48900DE1322 /* C_TEXT.cpp in Sources */,
+				D13116F01A03C2D400DE1322 /* C_BLOB.cpp in Sources */,
+				D13116CE1A03B62400DE1322 /* C_PICTURE.cpp in Sources */,
+				D13116CA1A03B5CC00DE1322 /* C_POINTER.cpp in Sources */,
+				D13116EC1A03BE2300DE1322 /* ARRAY_TIME.cpp in Sources */,
+				D13116B01A03B33D00DE1322 /* C_INTEGER.cpp in Sources */,
+				D13116A91A03ACB700DE1322 /* 4DPluginAPI.c in Sources */,
+				D13116E21A03BC1100DE1322 /* ARRAY_BOOLEAN.cpp in Sources */,
+				D13116BA1A03B3C300DE1322 /* C_REAL.cpp in Sources */,
+				D13116F41A03C7AF00DE1322 /* ARRAY_DATE.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		089C167DFE841241C02AAC07 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				089C167EFE841241C02AAC07 /* English */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		42D60B400A9DDBC8002ABB42 /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_LINK_OBJC_RUNTIME = NO;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUGGING_SYMBOLS = YES;
+				DEPLOYMENT_LOCATION = NO;
+				FRAMEWORK_SEARCH_PATHS = "";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "4D Plugin_Prefix.pch";
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				HEADER_SEARCH_PATHS = include;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/a";
+				LIBRARY_STYLE = Bundle;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_REZFLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = com.4D.xlnt;
+				PRODUCT_NAME = xlnt;
+				SDKROOT = macosx10.9;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				WRAPPER_EXTENSION = bundle;
+				ZERO_LINK = YES;
+			};
+			name = Development;
+		};
+		42D60B410A9DDBC8002ABB42 /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_LINK_OBJC_RUNTIME = NO;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = YES;
+				DEPLOYMENT_LOCATION = NO;
+				FRAMEWORK_SEARCH_PATHS = "";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "4D Plugin_Prefix.pch";
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				HEADER_SEARCH_PATHS = include;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/a";
+				LIBRARY_STYLE = Bundle;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_REZFLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = com.4D.xlnt;
+				PRODUCT_NAME = xlnt;
+				SDKROOT = macosx10.9;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				WRAPPER_EXTENSION = bundle;
+				ZERO_LINK = NO;
+			};
+			name = Deployment;
+		};
+		42D60B420A9DDBC8002ABB42 /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_LINK_OBJC_RUNTIME = NO;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEPLOYMENT_LOCATION = NO;
+				FRAMEWORK_SEARCH_PATHS = "";
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "4D Plugin_Prefix.pch";
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				HEADER_SEARCH_PATHS = include;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/a";
+				LIBRARY_STYLE = Bundle;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_REZFLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = com.4D.xlnt;
+				PRODUCT_NAME = xlnt;
+				SDKROOT = macosx10.9;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Default;
+		};
+		42D60B440A9DDBC8002ABB42 /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
+				GCC_VERSION = "";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				OBJROOT = "$(SRCROOT)/build";
+				SDKROOT = macosx10.9;
+				SYMROOT = "$(SRCROOT)/$(PRODUCT_NAME).4dbase/Plugins";
+			};
+			name = Development;
+		};
+		42D60B450A9DDBC8002ABB42 /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
+				GCC_VERSION = "";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				OBJROOT = "$(SRCROOT)/build";
+				SDKROOT = macosx10.9;
+				SYMROOT = "$(SRCROOT)/$(PRODUCT_NAME).4dbase/Plugins";
+			};
+			name = Deployment;
+		};
+		42D60B460A9DDBC8002ABB42 /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
+				GCC_VERSION = "";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				SDKROOT = macosx10.9;
+				SYMROOT = "$(SRCROOT)/$(PRODUCT_NAME).4dbase/Plugins";
+			};
+			name = Default;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		42D60B3F0A9DDBC8002ABB42 /* Build configuration list for PBXNativeTarget "xlnt" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				42D60B400A9DDBC8002ABB42 /* Development */,
+				42D60B410A9DDBC8002ABB42 /* Deployment */,
+				42D60B420A9DDBC8002ABB42 /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+		42D60B430A9DDBC8002ABB42 /* Build configuration list for PBXProject "xlnt" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				42D60B440A9DDBC8002ABB42 /* Development */,
+				42D60B450A9DDBC8002ABB42 /* Deployment */,
+				42D60B460A9DDBC8002ABB42 /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 089C1669FE841209C02AAC07 /* Project object */;
+}
