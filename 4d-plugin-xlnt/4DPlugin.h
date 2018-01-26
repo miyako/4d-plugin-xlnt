@@ -10,5 +10,17 @@
 
 #include <xlnt/xlnt.hpp>
 
+#include "libjson.h"
+
 // --- xlnt
-void xlnt_test(sLONG_PTR *pResult, PackagePtr pParams);
+void xlnt_Workbook_from_blob(PA_PluginParameters params);
+void xlnt_IMPORT_WORKBOOK(sLONG_PTR *pResult, PackagePtr pParams);
+
+void xlnt_WORKBOOK_TO_BLOB(PA_PluginParameters params);
+void xlnt_EXPORT_WORKBOOK(sLONG_PTR *pResult, PackagePtr pParams);
+
+// --- Cleanup
+void xlnt_CLEAR(sLONG_PTR *pResult, PackagePtr pParams);
+
+// --- xlnt
+void test(sLONG_PTR *pResult, PackagePtr pParams);

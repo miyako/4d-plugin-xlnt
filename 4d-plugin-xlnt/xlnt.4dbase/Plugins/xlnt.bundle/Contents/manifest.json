@@ -1,1 +1,1 @@
-﻿{"name":"xlnt","id":20000,"commands":[{"theme":"xlnt","syntax":"xlnt test(&T):T"}]}
+﻿{"name":"xlnt","id":20000,"commands":[{"theme":"Document","syntax":"xlnt Workbook from blob(&O;&T):T"},{"theme":"Document","syntax":"xlnt IMPORT WORKBOOK(&T;&T):T"},{"theme":"Document","syntax":"xlnt WORKBOOK TO BLOB(&T;&O;&T)"},{"theme":"Document","syntax":"xlnt EXPORT WORKBOOK(&T;&T;&T)"},{"theme":"Cleanup","syntax":"xlnt CLEAR(&T)"},{"theme":"xlnt","syntax":"test(&T):T"}]}

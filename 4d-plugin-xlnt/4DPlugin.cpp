@@ -12,6 +12,380 @@
 #include "4DPluginAPI.h"
 #include "4DPlugin.h"
 
+void json_wconv(const wchar_t *value, CUTF16String *u16)
+{
+	size_t wlen = wcslen(value);
+	
+#if VERSIONWIN
+	*u16 = CUTF16String((const PA_Unichar *)value, wlen);
+#else
+	uint32_t dataSize = (uint32_t)((wlen * sizeof(wchar_t))+ sizeof(PA_Unichar));
+	std::vector<char> buf(dataSize);
+	//returns byte size in toString (in this case, need to /2 to get characters)
+	uint32_t len = PA_ConvertCharsetToCharset((char *)value,
+																						(PA_long32)(wlen * sizeof(wchar_t)),
+																						eVTC_UTF_32,
+																						(char *)&buf[0],
+																						dataSize,
+																						eVTC_UTF_16);
+	*u16 = CUTF16String((const PA_Unichar *)&buf[0], len/sizeof(PA_Unichar));
+#endif
+}
+
+void json_wconv(const wchar_t *value, CUTF8String *u8)
+{
+	C_TEXT t;
+	size_t wlen = wcslen(value);
+	
+#if VERSIONWIN
+	t.setUTF16String((const PA_Unichar *)value, wlen);
+#else
+	uint32_t dataSize = (uint32_t)((wlen * sizeof(wchar_t))+ sizeof(PA_Unichar));
+	std::vector<char> buf(dataSize);
+	//returns byte size in toString (in this case, need to /2 to get characters)
+	uint32_t len = PA_ConvertCharsetToCharset((char *)value,
+																						(PA_long32)(wlen * sizeof(wchar_t)),
+																						eVTC_UTF_32,
+																						(char *)&buf[0],
+																						dataSize,
+																						eVTC_UTF_16);
+	t.setUTF16String((const PA_Unichar *)&buf[0], len/sizeof(PA_Unichar));
+#endif
+	t.copyUTF8String(u8);
+}
+
+void json_wconv(const char *value, std::wstring &u32)
+{
+	if((value) && strlen(value))
+	{
+		C_TEXT t;
+		CUTF8String u8 = CUTF8String((const uint8_t *)value);
+		
+		t.setUTF8String(&u8);
+		
+#if VERSIONWIN
+		u32 = std::wstring((wchar_t *)t.getUTF16StringPtr());
+#else
+		uint32_t dataSize = (t.getUTF16Length() * sizeof(wchar_t))+ sizeof(wchar_t);
+		std::vector<char> buf(dataSize);
+		
+		PA_ConvertCharsetToCharset((char *)t.getUTF16StringPtr(),
+															 t.getUTF16Length() * sizeof(PA_Unichar),
+															 eVTC_UTF_16,
+															 (char *)&buf[0],
+															 dataSize,
+															 eVTC_UTF_32);
+		
+		u32 = std::wstring((wchar_t *)&buf[0]);
+#endif
+	}else
+	{
+		u32 = L"";
+	}
+	
+}
+
+#pragma mark -
+
+namespace App
+{
+	std::map<uint32_t, xlnt::workbook *> workbooks;
+	
+	uint32_t workbookNewID(xlnt::workbook *wb)
+	{
+		if(wb)
+		{
+			unsigned int i = 1;
+			while (workbooks.find(i) != workbooks.end()) i++;
+			workbooks.insert(std::map<uint32_t, xlnt::workbook *>::value_type(i, wb));
+			return i;
+		}
+			return 0;
+	}
+	
+	void workbookDeleteID(uint32_t i)
+	{
+		xlnt::workbook *wb = NULL;
+		std::map<uint32_t, xlnt::workbook *>::iterator pos = workbooks.find(i);
+		if(pos != workbooks.end())
+		{
+			wb = pos->second;
+			delete wb;
+			workbooks.erase(pos);
+		}
+	}
+	
+	xlnt::workbook *workbookGetFromID(uint32_t i)
+	{
+		std::map<uint32_t, xlnt::workbook *>::iterator pos = workbooks.find(i);
+
+		return (pos != workbooks.end()) ? pos->second : NULL;
+	}
+	
+	xlnt::workbook *workbookClear()
+	{
+		std::map<uint32_t, xlnt::workbook *>::iterator it = workbooks.begin();
+		while (it != workbooks.end())
+		{
+			NSLog(@"the workbook %d was not cleared!",  it->first);
+			xlnt::workbook *wb = it->second;
+			delete wb;
+			it++;
+		}
+		workbooks.clear();
+	}
+	
+	xlnt::workbook *WorkbookFromPath(C_TEXT &path, C_TEXT &password)
+	{
+#if VERSIONMAC
+		CUTF8String _path, _password;
+		path.copyPath(&_path);
+		std::string filename = std::string((const char *)_path.c_str(), _path.length());
+		password.copyUTF8String(&_password);
+		std::string pass = std::string((const char *)_password.c_str(), _password.length());
+#else
+		std::wstring filename = std::wstring((const wchar *)path.getUTF16StringPtr(), path.getUTF16Length());
+		CUTF16String pass;
+		password.copyUTF16String(&pass);
+#endif
+		
+		xlnt::workbook *wb = new xlnt::workbook;
+		
+		if(pass.length())
+		{
+			wb->load(filename, pass);
+		}else
+		{
+			wb->load(filename);
+		}
+		
+		return wb;
+	}
+	
+	void WorkbookToPath(uint32_t i, C_TEXT &path, C_TEXT &password)
+	{
+		xlnt::workbook *wb = App::workbookGetFromID(i);
+		
+		if(wb)
+		{
+#if VERSIONMAC
+			CUTF8String _path, _password;
+			path.copyPath(&_path);
+			std::string filename = std::string((const char *)_path.c_str(), _path.length());
+			password.copyUTF8String(&_password);
+			std::string pass = std::string((const char *)_password.c_str(), _password.length());
+#else
+			std::wstring filename = std::wstring((const wchar *)path.getUTF16StringPtr(), path.getUTF16Length());
+			CUTF16String pass;
+			password.copyUTF16String(&pass);
+#endif
+			
+			if(pass.length())
+			{
+				wb->save(filename, pass);
+			}else
+			{
+				wb->save(filename);
+			}
+		}
+		
+	}
+	
+	void WorkbookToData(uint32_t i, PA_PluginParameters params, short index, C_TEXT &password)
+	{
+		xlnt::workbook *wb = App::workbookGetFromID(i);
+		
+		if(wb)
+		{
+			CUTF8String _password;
+			password.copyUTF8String(&_password);
+			std::string pass = std::string((const char *)_password.c_str(), _password.length());
+			
+			std::vector<std::uint8_t> data;
+			
+			if(pass.length())
+			{
+				wb->save(data, pass);
+			}else
+			{
+				wb->save(data);
+			}
+			
+			PA_SetBlobParameter(params, index, (void *)&data[0], data.size());
+		}
+		
+	}
+
+	xlnt::workbook *WorkbookFromData(PA_PluginParameters params, short index, C_TEXT &password)
+	{
+		xlnt::workbook *wb = new xlnt::workbook;
+		
+		PA_Handle h = PA_GetBlobHandleParameter(params, index);
+		if(h)/*	the handle could be NULL if the BLOB is empty on windows */
+		{
+			unsigned int size = PA_GetHandleSize(h);
+			std::vector<std::uint8_t> data(size);
+			PA_MoveBlock(PA_LockHandle(h), (char *)&data[0], size);
+			PA_UnlockHandle(h);
+			
+			CUTF8String _password;
+			password.copyUTF8String(&_password);
+			std::string pass = std::string((const char *)_password.c_str(), _password.length());
+
+			if(pass.length())
+			{
+				wb->load(data, pass);
+			}else
+			{
+				wb->load(data);
+			}
+		}
+		
+		return wb;
+	}
+	
+	
+	uint32_t WorkbookGet(C_TEXT &Param1_workbook)
+	{
+		uint32_t workbook_id = 0;
+		
+		CUTF8String Param1_u8;
+		Param1_workbook.copyUTF8String(&Param1_u8);
+		std::wstring Param1_option;
+		json_wconv((const char *)Param1_u8.c_str(), Param1_option);
+		JSONNODE *option = json_parse(Param1_option.c_str());
+		
+		if(option)
+		{
+			JSONNODE *node = json_get(option, L"class");
+			
+			if(node)
+			{
+				json_char *value = json_as_string(node);
+				
+				if(value)
+				{
+					std::wstring s = std::wstring((const wchar_t *)value);
+					if (s.compare(L"workbook") != std::string::npos)
+					{
+						node = json_get(option, L"id");
+						if(node)
+						{
+							workbook_id = json_as_int(node);
+						}
+					}
+					json_free(value);
+				}/* json_as_string */
+					
+			}/* json_get */
+			json_delete(option);
+		}/* json_parse */
+		
+		return workbook_id;
+	}
+
+	
+}
+
+#pragma mark JSON
+
+void json_stringify(JSONNODE *json, C_TEXT &t, BOOL pretty)
+{
+	json_char *json_string = pretty ? json_write_formatted(json) : json_write(json);
+	std::wstring wstr = std::wstring(json_string);
+#if VERSIONWIN
+	t.setUTF16String((const PA_Unichar *)wstr.c_str(), (uint32_t)wstr.length());
+#else
+	uint32_t dataSize = (uint32_t)((wstr.length() * sizeof(wchar_t))+ sizeof(PA_Unichar));
+	std::vector<char> buf(dataSize);
+	//returns byte size in toString (in this case, need to /2 to get characters)
+	uint32_t len = PA_ConvertCharsetToCharset((char *)wstr.c_str(),
+																						(PA_long32)(wstr.length() * sizeof(wchar_t)),
+																						eVTC_UTF_32,
+																						(char *)&buf[0],
+																						dataSize,
+																						eVTC_UTF_16);
+	t.setUTF16String((const PA_Unichar *)&buf[0], len/sizeof(PA_Unichar));
+#endif
+	json_free(json_string);
+}
+
+void json_set_i_for_key(JSONNODE *n, json_char *key, json_int_t value)
+{
+	if(n)
+	{
+		JSONNODE *e = json_get(n, key);
+		if(e)
+		{
+			json_set_i(e, value);//over-write existing value
+		}else
+		{
+			json_push_back(n, json_new_i(key, value));
+		}
+	}
+}
+
+void json_set_s_for_key(JSONNODE *n, json_char *key, const char *value)
+{
+	if(n)
+	{
+		if(value)
+		{
+			std::wstring w32;
+			json_wconv(value, w32);
+			
+			JSONNODE *e = json_get(n, key);
+			if(e)
+			{
+				json_set_a(e, w32.c_str());//over-write existing value
+			}else
+			{
+				json_push_back(n, json_new_a(key, w32.c_str()));
+			}
+			
+		}else
+		{
+			JSONNODE *e = json_get(n, key);
+			if(e)
+			{
+				json_nullify(e);//over-write existing value
+			}else
+			{
+				JSONNODE *node = json_new_a(key, L"");
+				json_nullify(node);
+				json_push_back(n, node);
+			}
+		}
+	}
+}
+
+#pragma mark -
+
+bool IsProcessOnExit()
+{
+	C_TEXT name;
+	PA_long32 state, time;
+	PA_GetProcessInfo(PA_GetCurrentProcessNumber(), name, &state, &time);
+	CUTF16String procName(name.getUTF16StringPtr());
+	CUTF16String exitProcName((PA_Unichar *)"$\0x\0x\0\0\0");
+	return (!procName.compare(exitProcName));
+}
+
+void OnStartup()
+{
+
+}
+
+void OnCloseProcess()
+{
+	if(IsProcessOnExit())
+	{
+		App::workbookClear();
+	}
+}
+
+#pragma mark -
+
 void PluginMain(PA_long32 selector, PA_PluginParameters params)
 {
 	try
@@ -20,7 +394,21 @@ void PluginMain(PA_long32 selector, PA_PluginParameters params)
 		sLONG_PTR *pResult = (sLONG_PTR *)params->fResult;
 		PackagePtr pParams = (PackagePtr)params->fParameters;
 
-		CommandDispatcher(pProcNum, pResult, pParams); 
+		switch(pProcNum)
+		{
+			case 1 :
+				xlnt_Workbook_from_blob(params);
+				break;
+				
+			case 3 :
+				xlnt_WORKBOOK_TO_BLOB(params);
+				break;
+				
+			default :
+				CommandDispatcher(pProcNum, pResult, pParams);
+				break;
+		}
+		
 	}
 	catch(...)
 	{
@@ -32,34 +420,173 @@ void CommandDispatcher (PA_long32 pProcNum, sLONG_PTR *pResult, PackagePtr pPara
 {
 	switch(pProcNum)
 	{
-// --- xlnt
-
-		case 1 :
-			xlnt_test(pResult, pParams);
+		case kInitPlugin :
+		case kServerInitPlugin :
+			OnStartup();
 			break;
-
+			
+		case kCloseProcess :
+			OnCloseProcess();
+			break;
+			
+			// --- xlnt
+			
+		case 2 :
+			xlnt_IMPORT_WORKBOOK(pResult, pParams);
+			break;
+			
+		case 4 :
+			xlnt_EXPORT_WORKBOOK(pResult, pParams);
+			break;
+			
+			// --- Cleanup
+			
+		case 5 :
+			xlnt_CLEAR(pResult, pParams);
+			break;
+			
+			// --- xlnt
+			
+		case 6 :
+			test(pResult, pParams);
+			break;
 	}
+}
+
+#pragma mark main
+
+// ------------------------------------- xlnt -------------------------------------
+
+void xlnt_Workbook_from_blob(PA_PluginParameters params)
+{
+	sLONG_PTR *pResult = (sLONG_PTR *)params->fResult;
+	PackagePtr pParams = (PackagePtr)params->fParameters;
+	
+	C_TEXT Param2_password;
+	C_TEXT returnValue;
+	
+	Param2_password.fromParamAtIndex(pParams, 2);
+	
+	xlnt::workbook *wb = App::WorkbookFromData(params, 2, Param2_password);
+	
+	JSONNODE *node = json_new(JSON_NODE);
+	json_set_i_for_key(node, L"id", App::workbookNewID(wb));
+	json_set_s_for_key(node, L"class", "workbook");
+	/* end of custom properties */
+	
+	json_stringify(node, returnValue, FALSE);
+	json_delete(node);
+	
+	returnValue.setReturn(pResult);
+}
+
+void WorkbookSetProperties()
+{
+	
+}
+
+void xlnt_IMPORT_WORKBOOK(sLONG_PTR *pResult, PackagePtr pParams)
+{
+	C_TEXT Param1_path;
+	C_TEXT Param2_password;
+	C_TEXT returnValue;
+	
+	Param1_path.fromParamAtIndex(pParams, 1);
+	Param2_password.fromParamAtIndex(pParams, 2);
+	
+	CUTF8String original_path;
+	Param1_path.copyUTF8String(&original_path);
+	
+	xlnt::workbook *wb = App::WorkbookFromPath(Param1_path, Param2_password);
+	
+	JSONNODE *node = json_new(JSON_NODE);
+	json_set_i_for_key(node, L"id", App::workbookNewID(wb));
+	json_set_s_for_key(node, L"class", "workbook");
+	/* end of custom properties */
+	
+	json_stringify(node, returnValue, FALSE);
+	json_delete(node);
+	
+	returnValue.setReturn(pResult);
+}
+
+void xlnt_WORKBOOK_TO_BLOB(PA_PluginParameters params)
+{
+	sLONG_PTR *pResult = (sLONG_PTR *)params->fResult;
+	PackagePtr pParams = (PackagePtr)params->fParameters;
+	
+	C_TEXT Param1_workbook;
+	C_TEXT Param3_password;
+	
+	Param1_workbook.fromParamAtIndex(pParams, 1);
+	Param3_password.fromParamAtIndex(pParams, 3);
+	
+	App::WorkbookToData(App::WorkbookGet(Param1_workbook),
+											params, 2, Param3_password);
+}
+
+void xlnt_EXPORT_WORKBOOK(sLONG_PTR *pResult, PackagePtr pParams)
+{
+	C_TEXT Param1_workbook;
+	C_TEXT Param2_path;
+	C_TEXT Param3_password;
+	
+	Param1_workbook.fromParamAtIndex(pParams, 1);
+	Param2_path.fromParamAtIndex(pParams, 2);
+	Param3_password.fromParamAtIndex(pParams, 3);
+	
+	App::WorkbookToPath(App::WorkbookGet(Param1_workbook),
+											Param2_path, Param3_password);
+}
+
+// ------------------------------------ Cleanup -----------------------------------
+
+
+void xlnt_CLEAR(sLONG_PTR *pResult, PackagePtr pParams)
+{
+	C_TEXT Param1;
+	
+	Param1.fromParamAtIndex(pParams, 1);
+	
+	if(Param1.getUTF16Length())
+	{
+		uint32_t i = App::WorkbookGet(Param1);
+		if(i)
+		{
+			App::workbookDeleteID(i);
+		}
+	}
+	
 }
 
 // ------------------------------------- xlnt -------------------------------------
 
 
-void xlnt_test(sLONG_PTR *pResult, PackagePtr pParams)
+void test(sLONG_PTR *pResult, PackagePtr pParams)
 {
 	C_TEXT Param1;
 	C_TEXT returnValue;
-
+	
 	Param1.fromParamAtIndex(pParams, 1);
-
-	xlnt::workbook wb;
-	xlnt::worksheet ws = wb.active_sheet();
-	ws.cell("A1").value(5);
-	ws.cell("B2").value("string data");
-	ws.cell("C3").formula("=RAND()");
-	ws.merge_cells("C3:C4");
-	ws.freeze_panes("B2");
-	wb.save("/Users/miyako/Desktop/example.xlsx");
-
+	
+	xlnt::workbook *wb = App::workbookGetFromID(App::WorkbookGet(Param1));
+	
+	std::string s;
+	
+	if(wb)
+	{
+		auto ws = wb->active_sheet();
+		
+		for (auto row : ws.rows(false))
+		{
+			for (auto cell : row)
+			{
+				s += cell.to_string();
+				s += "\r";
+			}
+		}
+	}
+	
+	Param1.setUTF8String((const uint8_t *)s.c_str(), s.length());
 	returnValue.setReturn(pResult);
 }
-
