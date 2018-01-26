@@ -24,7 +24,7 @@ path|TEXT|
 password|TEXT|
 
 ```
-result:=xlnt Workbook from blob (arg1;arg2)
+result:=xlnt Workbook from blob (data{;password})
 
 ```
 
