@@ -51,6 +51,4 @@ xlnt CLEAR (obj)
 Parameter|Type|Description
 ------------|------------|----
 obj|TEXT|``{"id":id, "class":"workbook"}``
-data|BLOB|
-password|TEXT|
 
