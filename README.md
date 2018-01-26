@@ -13,7 +13,7 @@ path|TEXT|
 password|TEXT|
 obj|TEXT|``{"id":id, "class":"workbook"}``
 
-'''
+```
 xlnt EXPORT WORKBOOK (obj;path{;password})
 ```
 
