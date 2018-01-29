@@ -61,3 +61,19 @@ obj|TEXT|``{"id":id, "class":"workbook"}``
 ``sheet_count``  
 ``active_sheet`` (title)  
 ``sheet_titles[]``  
+``core_properties``:  
+  ``category``  
+  ``content_status``  
+  ``created``  
+  ``creator``  
+  ``description``  
+  ``identifier``  
+  ``language``  
+  ``last_modified_by``  
+  ``last_printed``  
+  ``modified``  
+  ``revision``  
+  ``subject``  
+  ``title``  
+  ``version``  
+  
