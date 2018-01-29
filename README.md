@@ -67,6 +67,7 @@ obj|TEXT|``{"id":id, "class":"workbook"}``
 ``core_properties.creator``  
 ``core_properties.description``  
 ``core_properties.identifier``  
+``core_properties.keywords``  
 ``core_properties.language``  
 ``core_properties.last_modified_by``  
 ``core_properties.last_printed``  
