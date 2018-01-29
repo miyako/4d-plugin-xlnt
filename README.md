@@ -87,12 +87,18 @@ xlnt GET VALUES (obj;values)
 Parameter|Type|Description
 ------------|------------|----
 obj|TEXT|``{"id":id, "class":"workbook", target:name}``
-values|TEXT|``[{target:value}, {target:value},...]``
+values|TEXT|``value`` or ``[value, value,...]``
 
-``obj.target`` should be ``sheet`` or ``range``  
+``target`` should be ``sheet`` or ``range``  
 ``obj.range`` is ``named_range``  
 ``obj.sheet`` is ``sheet_by_title``  
 
 if both are omitted, ``active_sheet`` is implied.  
+
+if ``obj.range`` is specified, ``values`` should be a single ``value`` object.
+
+otherwise, it can be an array of ``value`` objects.   
+
+
 
 
