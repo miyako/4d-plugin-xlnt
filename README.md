@@ -77,3 +77,17 @@ obj|TEXT|``{"id":id, "class":"workbook"}``
 ``core_properties.title``  
 ``core_properties.version``  
   
+  ---
+  
+```
+xlnt SET VALUES (obj;values)
+xlnt GET VALUES (obj;values)
+```
+
+Parameter|Type|Description
+------------|------------|----
+obj|TEXT|``{"id":id, "class":"workbook", "sheet":name}``
+values|TEXT|``[{target:value}, {target:value},...]``
+
+if ``obj.sheet`` is omitted, active sheet is implied.
+
