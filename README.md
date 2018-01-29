@@ -52,3 +52,12 @@ Parameter|Type|Description
 ------------|------------|----
 obj|TEXT|``{"id":id, "class":"workbook"}``
 
+---
+
+#### Properties of workbook
+
+``base_date`` (``windows_1900`` or ``mac_1904``)  
+``title`` (null if !has_title)  
+``sheet_count``  
+``active_sheet`` (title)  
+``sheet_titles[]``  
