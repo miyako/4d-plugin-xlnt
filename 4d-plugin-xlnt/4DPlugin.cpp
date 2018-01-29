@@ -209,12 +209,12 @@ namespace App
 		return (pos != workbooks.end()) ? pos->second : NULL;
 	}
 	
-	xlnt::workbook *workbookClear()
+	void workbookClear()
 	{
 		std::map<uint32_t, xlnt::workbook *>::iterator it = workbooks.begin();
 		while (it != workbooks.end())
 		{
-			NSLog(@"the workbook %d was not cleared!",  it->first);
+//			NSLog(@"the workbook %d was not cleared!",  it->first);
 			xlnt::workbook *wb = it->second;
 			delete wb;
 			it++;
@@ -224,17 +224,16 @@ namespace App
 	
 	xlnt::workbook *WorkbookFromPath(C_TEXT &path, C_TEXT &password)
 	{
+		CUTF8String _password;
 #if VERSIONMAC
-		CUTF8String _path, _password;
+		CUTF8String _path;
 		path.copyPath(&_path);
 		std::string filename = std::string((const char *)_path.c_str(), _path.length());
+#else
+		std::wstring filename = std::wstring((const wchar_t *)path.getUTF16StringPtr(), path.getUTF16Length());
+#endif
 		password.copyUTF8String(&_password);
 		std::string pass = std::string((const char *)_password.c_str(), _password.length());
-#else
-		std::wstring filename = std::wstring((const wchar *)path.getUTF16StringPtr(), path.getUTF16Length());
-		CUTF16String pass;
-		password.copyUTF16String(&pass);
-#endif
 		
 		xlnt::workbook *wb = new xlnt::workbook;
 		
@@ -255,17 +254,16 @@ namespace App
 		
 		if(wb)
 		{
+			CUTF8String _password;
 #if VERSIONMAC
-			CUTF8String _path, _password;
+			CUTF8String _path;
 			path.copyPath(&_path);
 			std::string filename = std::string((const char *)_path.c_str(), _path.length());
 			password.copyUTF8String(&_password);
-			std::string pass = std::string((const char *)_password.c_str(), _password.length());
 #else
-			std::wstring filename = std::wstring((const wchar *)path.getUTF16StringPtr(), path.getUTF16Length());
-			CUTF16String pass;
-			password.copyUTF16String(&pass);
+			std::wstring filename = std::wstring((const wchar_t *)path.getUTF16StringPtr(), path.getUTF16Length());
 #endif
+			std::string pass = std::string((const char *)_password.c_str(), _password.length());
 			
 			if(pass.length())
 			{
