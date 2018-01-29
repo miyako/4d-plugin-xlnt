@@ -23,4 +23,5 @@ void xlnt_EXPORT_WORKBOOK(sLONG_PTR *pResult, PackagePtr pParams);
 void xlnt_CLEAR(sLONG_PTR *pResult, PackagePtr pParams);
 
 // --- xlnt
-void test(sLONG_PTR *pResult, PackagePtr pParams);
+void xlnt_SET_VALUES(sLONG_PTR *pResult, PackagePtr pParams);
+void xlnt_GET_VALUES(sLONG_PTR *pResult, PackagePtr pParams);

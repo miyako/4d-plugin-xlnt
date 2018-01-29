@@ -12,6 +12,8 @@
 #include "4DPluginAPI.h"
 #include "4DPlugin.h"
 
+#pragma mark JSON
+
 void json_wconv(const wchar_t *value, CUTF16String *u16)
 {
 	size_t wlen = wcslen(value);
@@ -83,6 +85,91 @@ void json_wconv(const char *value, std::wstring &u32)
 		u32 = L"";
 	}
 	
+}
+
+void json_stringify(JSONNODE *json, C_TEXT &t, BOOL pretty)
+{
+	json_char *json_string = pretty ? json_write_formatted(json) : json_write(json);
+	std::wstring wstr = std::wstring(json_string);
+#if VERSIONWIN
+	t.setUTF16String((const PA_Unichar *)wstr.c_str(), (uint32_t)wstr.length());
+#else
+	uint32_t dataSize = (uint32_t)((wstr.length() * sizeof(wchar_t))+ sizeof(PA_Unichar));
+	std::vector<char> buf(dataSize);
+	//returns byte size in toString (in this case, need to /2 to get characters)
+	uint32_t len = PA_ConvertCharsetToCharset((char *)wstr.c_str(),
+																						(PA_long32)(wstr.length() * sizeof(wchar_t)),
+																						eVTC_UTF_32,
+																						(char *)&buf[0],
+																						dataSize,
+																						eVTC_UTF_16);
+	t.setUTF16String((const PA_Unichar *)&buf[0], len/sizeof(PA_Unichar));
+#endif
+	json_free(json_string);
+}
+
+void json_set_i_for_key(JSONNODE *n, json_char *key, json_int_t value)
+{
+	if(n)
+	{
+		JSONNODE *e = json_get(n, key);
+		if(e)
+		{
+			json_set_i(e, value);//over-write existing value
+		}else
+		{
+			json_push_back(n, json_new_i(key, value));
+		}
+	}
+}
+
+void json_set_s_for_key(JSONNODE *n, json_char *key, const char *value)
+{
+	if(n)
+	{
+		if(value)
+		{
+			std::wstring w32;
+			json_wconv(value, w32);
+			
+			JSONNODE *e = json_get(n, key);
+			if(e)
+			{
+				json_set_a(e, w32.c_str());//over-write existing value
+			}else
+			{
+				json_push_back(n, json_new_a(key, w32.c_str()));
+			}
+			
+		}else
+		{
+			JSONNODE *e = json_get(n, key);
+			if(e)
+			{
+				json_nullify(e);//over-write existing value
+			}else
+			{
+				JSONNODE *node = json_new_a(key, L"");
+				json_nullify(node);
+				json_push_back(n, node);
+			}
+		}
+	}
+}
+
+void json_set_b_for_key(JSONNODE *n, json_char *key, json_bool_t value)
+{
+	if(n)
+	{
+		JSONNODE *e = json_get(n, key);
+		if(e)
+		{
+			json_set_b(e, value);//over-write existing value
+		}else
+		{
+			json_push_back(n, json_new_b(key, value));
+		}
+	}
 }
 
 #pragma mark -
@@ -244,7 +331,6 @@ namespace App
 		return wb;
 	}
 	
-	
 	uint32_t WorkbookGet(C_TEXT &Param1_workbook)
 	{
 		uint32_t workbook_id = 0;
@@ -284,79 +370,122 @@ namespace App
 		return workbook_id;
 	}
 
-	
-}
-
-#pragma mark JSON
-
-void json_stringify(JSONNODE *json, C_TEXT &t, BOOL pretty)
-{
-	json_char *json_string = pretty ? json_write_formatted(json) : json_write(json);
-	std::wstring wstr = std::wstring(json_string);
-#if VERSIONWIN
-	t.setUTF16String((const PA_Unichar *)wstr.c_str(), (uint32_t)wstr.length());
-#else
-	uint32_t dataSize = (uint32_t)((wstr.length() * sizeof(wchar_t))+ sizeof(PA_Unichar));
-	std::vector<char> buf(dataSize);
-	//returns byte size in toString (in this case, need to /2 to get characters)
-	uint32_t len = PA_ConvertCharsetToCharset((char *)wstr.c_str(),
-																						(PA_long32)(wstr.length() * sizeof(wchar_t)),
-																						eVTC_UTF_32,
-																						(char *)&buf[0],
-																						dataSize,
-																						eVTC_UTF_16);
-	t.setUTF16String((const PA_Unichar *)&buf[0], len/sizeof(PA_Unichar));
-#endif
-	json_free(json_string);
-}
-
-void json_set_i_for_key(JSONNODE *n, json_char *key, json_int_t value)
-{
-	if(n)
+	void WorkbookPropertiesToJSON(xlnt::workbook *wb, C_TEXT& returnValue)
 	{
-		JSONNODE *e = json_get(n, key);
-		if(e)
+		JSONNODE *node = json_new(JSON_NODE);
+		json_set_i_for_key(node, L"id", App::workbookNewID(wb));
+		json_set_s_for_key(node, L"class", "workbook");
+		
+		switch (wb->base_date())
 		{
-			json_set_i(e, value);//over-write existing value
-		}else
-		{
-			json_push_back(n, json_new_i(key, value));
+			case xlnt::calendar::windows_1900:
+				json_set_s_for_key(node, L"base_date", "windows_1900");
+    break;
+			case xlnt::calendar::mac_1904:
+				json_set_s_for_key(node, L"base_date", "mac_1904");
+    break;
 		}
-	}
-}
-
-void json_set_s_for_key(JSONNODE *n, json_char *key, const char *value)
-{
-	if(n)
-	{
-		if(value)
+		
+		json_set_s_for_key(node, L"title", wb->has_title() ? wb->title().c_str() : NULL);
+		json_set_i_for_key(node, L"sheet_count", wb->sheet_count());
+		json_set_s_for_key(node, L"active_sheet", wb->active_sheet().title().c_str());
+		
+		std::vector<std::string> sheet_titles = wb->sheet_titles();
+		
+		JSONNODE *sheetTitles = json_new(JSON_ARRAY);
+		for(size_t i = 0; i < sheet_titles.size(); ++i)
 		{
 			std::wstring w32;
-			json_wconv(value, w32);
-			
-			JSONNODE *e = json_get(n, key);
-			if(e)
-			{
-				json_set_a(e, w32.c_str());//over-write existing value
-			}else
-			{
-				json_push_back(n, json_new_a(key, w32.c_str()));
-			}
-			
-		}else
-		{
-			JSONNODE *e = json_get(n, key);
-			if(e)
-			{
-				json_nullify(e);//over-write existing value
-			}else
-			{
-				JSONNODE *node = json_new_a(key, L"");
-				json_nullify(node);
-				json_push_back(n, node);
-			}
+			json_wconv(sheet_titles[i].c_str(), w32);
+			JSONNODE *s = json_new(JSON_STRING);
+			json_set_a(s, w32.c_str());
+			json_push_back(sheetTitles, s);
 		}
+		json_set_name(sheetTitles, L"sheet_titles");
+		json_push_back(node, sheetTitles);
+		
+		std::vector<xlnt::core_property> core_properties = wb->core_properties();
+		JSONNODE *coreProperties = json_new(JSON_NODE);
+		for(size_t i = 0; i < core_properties.size(); ++i)
+		{
+			xlnt::core_property core_property_type = core_properties[i];
+			xlnt::variant value = wb->core_property(core_property_type);
+			
+			switch (core_property_type) {
+				case xlnt::core_property::category:
+					json_set_s_for_key(coreProperties, L"category", value.get<std::string>().c_str());
+					break;
+				case xlnt::core_property::content_status:
+					json_set_s_for_key(coreProperties, L"content_status", value.get<std::string>().c_str());
+					break;
+				case xlnt::core_property::created:
+					json_set_s_for_key(coreProperties, L"created", value.get<std::string>().c_str());
+					break;
+				case xlnt::core_property::creator:
+					json_set_s_for_key(coreProperties, L"creator", value.get<std::string>().c_str());
+					break;
+				case xlnt::core_property::description:
+					json_set_s_for_key(coreProperties, L"description", value.get<std::string>().c_str());
+					break;
+				case xlnt::core_property::identifier:
+					json_set_s_for_key(coreProperties, L"identifier", value.get<std::string>().c_str());
+					break;
+				case xlnt::core_property::keywords:
+					json_set_s_for_key(coreProperties, L"keywords", value.get<std::string>().c_str());
+/*
+				{
+					xlnt::variant::type t = value.value_type();// lpstr, not vector
+					std::vector<xlnt::variant> keywords = value.get<std::vector<xlnt::variant>>();
+					JSONNODE *words = json_new(JSON_ARRAY);
+					for(size_t i = 0; i < keywords.size(); ++i)
+					{
+						std::wstring w32;
+						json_wconv(keywords[i].get<std::string>().c_str(), w32);
+						JSONNODE *s = json_new(JSON_STRING);
+						json_set_a(s, w32.c_str());
+						json_push_back(words, s);
+					}
+					json_set_name(words, L"keywords");
+					json_push_back(coreProperties, words);
+				}
+ */
+					break;
+				case xlnt::core_property::language:
+					json_set_s_for_key(coreProperties, L"language", value.get<std::string>().c_str());
+					break;
+				case xlnt::core_property::last_modified_by:
+					json_set_s_for_key(coreProperties, L"last_modified_by", value.get<std::string>().c_str());
+					break;
+				case xlnt::core_property::last_printed:
+					json_set_s_for_key(coreProperties, L"last_printed", value.get<std::string>().c_str());
+					break;
+				case xlnt::core_property::modified:
+					json_set_s_for_key(coreProperties, L"modified", value.get<std::string>().c_str());
+					break;
+				case xlnt::core_property::revision:
+					json_set_s_for_key(coreProperties, L"revision", value.get<std::string>().c_str());
+					break;
+				case xlnt::core_property::subject:
+					json_set_s_for_key(coreProperties, L"subject", value.get<std::string>().c_str());
+					break;
+				case xlnt::core_property::title:
+					json_set_s_for_key(coreProperties, L"title", value.get<std::string>().c_str());
+					break;
+				case xlnt::core_property::version:
+					json_set_s_for_key(coreProperties, L"version", value.get<std::string>().c_str());
+					break;
+				default:
+					break;
+			}
+
+		}
+		json_set_name(coreProperties, L"core_properties");
+		json_push_back(node, coreProperties);
+		
+		json_stringify(node, returnValue, FALSE);
+		json_delete(node);
 	}
+	
 }
 
 #pragma mark -
@@ -448,7 +577,11 @@ void CommandDispatcher (PA_long32 pProcNum, sLONG_PTR *pResult, PackagePtr pPara
 			// --- xlnt
 			
 		case 6 :
-			test(pResult, pParams);
+			xlnt_SET_VALUES(pResult, pParams);
+			break;
+			
+		case 7 :
+			xlnt_GET_VALUES(pResult, pParams);
 			break;
 	}
 }
@@ -469,20 +602,9 @@ void xlnt_Workbook_from_blob(PA_PluginParameters params)
 	
 	xlnt::workbook *wb = App::WorkbookFromData(params, 2, Param2_password);
 	
-	JSONNODE *node = json_new(JSON_NODE);
-	json_set_i_for_key(node, L"id", App::workbookNewID(wb));
-	json_set_s_for_key(node, L"class", "workbook");
-	/* end of custom properties */
-	
-	json_stringify(node, returnValue, FALSE);
-	json_delete(node);
+	App::WorkbookPropertiesToJSON(wb, returnValue);
 	
 	returnValue.setReturn(pResult);
-}
-
-void WorkbookSetProperties()
-{
-	
 }
 
 void xlnt_IMPORT_WORKBOOK(sLONG_PTR *pResult, PackagePtr pParams)
@@ -499,13 +621,7 @@ void xlnt_IMPORT_WORKBOOK(sLONG_PTR *pResult, PackagePtr pParams)
 	
 	xlnt::workbook *wb = App::WorkbookFromPath(Param1_path, Param2_password);
 	
-	JSONNODE *node = json_new(JSON_NODE);
-	json_set_i_for_key(node, L"id", App::workbookNewID(wb));
-	json_set_s_for_key(node, L"class", "workbook");
-	/* end of custom properties */
-	
-	json_stringify(node, returnValue, FALSE);
-	json_delete(node);
+	App::WorkbookPropertiesToJSON(wb, returnValue);
 	
 	returnValue.setReturn(pResult);
 }
@@ -562,31 +678,27 @@ void xlnt_CLEAR(sLONG_PTR *pResult, PackagePtr pParams)
 // ------------------------------------- xlnt -------------------------------------
 
 
-void test(sLONG_PTR *pResult, PackagePtr pParams)
+void xlnt_SET_VALUES(sLONG_PTR *pResult, PackagePtr pParams)
 {
 	C_TEXT Param1;
-	C_TEXT returnValue;
+	C_TEXT Param2;
 	
 	Param1.fromParamAtIndex(pParams, 1);
+	Param2.fromParamAtIndex(pParams, 2);
 	
-	xlnt::workbook *wb = App::workbookGetFromID(App::WorkbookGet(Param1));
+	// --- write the code of xlnt_SET_VALUES here...
 	
-	std::string s;
-	
-	if(wb)
-	{
-		auto ws = wb->active_sheet();
-		
-		for (auto row : ws.rows(false))
-		{
-			for (auto cell : row)
-			{
-				s += cell.to_string();
-				s += "\r";
-			}
-		}
-	}
-	
-	Param1.setUTF8String((const uint8_t *)s.c_str(), s.length());
-	returnValue.setReturn(pResult);
 }
+
+void xlnt_GET_VALUES(sLONG_PTR *pResult, PackagePtr pParams)
+{
+	C_TEXT Param1;
+	C_TEXT Param2;
+	
+	Param1.fromParamAtIndex(pParams, 1);
+	Param2.fromParamAtIndex(pParams, 2);
+	
+	// --- write the code of xlnt_GET_VALUES here...
+	
+}
+
