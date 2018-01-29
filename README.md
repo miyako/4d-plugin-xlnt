@@ -86,8 +86,13 @@ xlnt GET VALUES (obj;values)
 
 Parameter|Type|Description
 ------------|------------|----
-obj|TEXT|``{"id":id, "class":"workbook", "sheet":name}``
+obj|TEXT|``{"id":id, "class":"workbook", target:name}``
 values|TEXT|``[{target:value}, {target:value},...]``
 
-if ``obj.sheet`` is omitted, active sheet is implied.
+``obj.target`` should be ``sheet`` or ``range``  
+``obj.range`` is ``named_range``  
+``obj.sheet`` is ``sheet_by_title``  
+
+if both are omitted, ``active_sheet`` is implied.  
+
 
