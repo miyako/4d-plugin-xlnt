@@ -57,7 +57,7 @@ obj|TEXT|``{"id":id, "class":"workbook"}``
 #### Properties of workbook
 
 ``base_date`` (``windows_1900`` or ``mac_1904``)  
-``title`` (null if !has_title)  
+``title`` (``null`` if !has_title)  
 ``sheet_count``  
 ``active_sheet`` (title)  
 ``sheet_titles[]``  
@@ -99,6 +99,22 @@ if ``obj.range`` is specified, ``values`` should be a single ``value`` object.
 
 otherwise, it can be an array of ``value`` objects.   
 
+``value`` object should be ``{location:content}``  
 
+``location`` should be ``cell`` or ``range``  
 
+``cell`` can be ``{"column":col, "row":row}``, ``[col, row]``, ``cell_reference``, or ``null`` (default=A1).  
+  
+``cell_reference`` is a a cell coordinate (e.g. B12, $B$12).  
 
+``content`` can be ``value``, ``formula``, ``comment``, ``date``, ``time`` or ``datetime``.  
+
+``value`` can be ``null``, boolean, string or number.  
+
+``date`` can be number (days_since_base_year), ``{"year":year, "month":month, "day":day}``, or "today".  
+
+``time`` can be	string, number (fraction of a day), ``{"hour":hour, "minute":minute, "second":second, "microsecond":microsecond}``, or 	"now"  
+
+``datetime`` can be string, number (integer=date, fractional=time), 
+
+	``{"year":year, "month":month, "day":day, "hour":hour, "minute":minute, "second":second, "microsecond":microsecond}``, "now" or "today"
