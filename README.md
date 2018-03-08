@@ -222,3 +222,20 @@ OB SET($values{5};"cell";"A5";"datetime";string(Current date;ISO date;current ti
 
 xlnt SET VALUES (JSON Stringify($o);JSON Stringify array($values))
 ```
+
+### Set comment 
+
+```
+$object:=xlnt IMPORT WORKBOOK ($path;$password)
+
+$o:=JSON Parse($object)
+
+OB SET($o;"sheet";"Sheet1")  //target:sheet
+
+ARRAY OBJECT($values;2)
+
+OB SET($values{1};"cell";"A1";"comment";"comment")//not working?
+OB SET($values{2};"cell";"A1";"value";"value")
+
+xlnt SET VALUES (JSON Stringify($o);JSON Stringify array($values))
+```
