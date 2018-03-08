@@ -154,6 +154,8 @@ OB SET($values{5};"cell";"D4";"value";"D4")
 xlnt SET VALUES (JSON Stringify($o);JSON Stringify array($values))
 ```
 
+<img width="500" alt="2018-03-08 16 45 56" src="https://user-images.githubusercontent.com/1725068/37139163-341e6b68-22f0-11e8-8dad-c8098c09bc25.png">
+
 ### Set date value
 
 ```
