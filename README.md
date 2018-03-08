@@ -116,3 +116,26 @@ otherwise, it can be an array of ``value`` objects.
 ``time`` can be	string, number (fraction of a day where ``0.5`` is noon), ``{"hour":hour, "minute":minute, "second":second, "microsecond":microsecond}`` or 	"now"  
 
 ``datetime`` can be ISO string, number (integer=date, fractional=time), ``{"year":year, "month":month, "day":day, "hour":hour, "minute":minute, "second":second, "microsecond":microsecond}``, "now" or "today"
+
+## Examples
+
+### Set time value
+
+```
+$object:=xlnt IMPORT WORKBOOK ($path;$password)
+
+$o:=JSON Parse($object)
+
+OB SET($o;"sheet";"Sheet1")  //target:sheet
+
+ARRAY OBJECT($values;4)
+
+OB SET($values{1};"cell";"A1";"time";"now")
+OB SET($values{2};"cell";"A2";"time";0.5)  
+C_OBJECT($time)
+OB SET($time;"hour";12;"minute";34;"second";56;"microsecond";78)
+OB SET($values{3};"cell";"A3";"time";$time)
+OB SET($values{4};"cell";"A4";"time";"12:34:56")
+
+xlnt SET VALUES (JSON Stringify($o);JSON Stringify array($values))
+```
