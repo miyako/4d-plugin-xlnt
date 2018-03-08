@@ -113,8 +113,6 @@ otherwise, it can be an array of ``value`` objects.
 
 ``date`` can be number (days_since_base_year), ``{"year":year, "month":month, "day":day}`` or "today".  
 
-``time`` can be	string, ~~number (fraction of a day)~~, ``{"hour":hour, "minute":minute, "second":second, "microsecond":microsecond}`` or 	"now"  
-
-``static time from_number(double number)`` does not seem to be working.
+``time`` can be	string, number (fraction of a day where ``0.5`` is noon), ``{"hour":hour, "minute":minute, "second":second, "microsecond":microsecond}`` or 	"now"  
 
 ``datetime`` can be ISO string, number (integer=date, fractional=time), ``{"year":year, "month":month, "day":day, "hour":hour, "minute":minute, "second":second, "microsecond":microsecond}``, "now" or "today"
