@@ -119,6 +119,41 @@ otherwise, it can be an array of ``value`` objects.
 
 ## Examples
 
+### Set cell value
+
+```
+$object:=xlnt IMPORT WORKBOOK ($path;$password)
+
+$o:=JSON Parse($object)
+
+OB SET($o;"sheet";"Sheet1")  //target:sheet
+
+ARRAY OBJECT($values;5)
+
+  //cell can be cell_reference
+OB SET($values{1};"cell";"A2";"value";"A2")
+
+  //cell can be {"column":col, "row":row}
+C_OBJECT($cells)
+OB SET($cells;"column";3;"row";3)
+OB SET($values{2};"cell";$cells;"value";"3,3")
+
+  //cell can be [col, row]
+ARRAY LONGINT($n;2)
+$n{1}:=2
+$n{2}:=2
+OB SET ARRAY($values{3};"cell";$n)
+OB SET($values{3};"value";"2,2")
+
+  //cell can be null
+OB SET NULL($values{4};"cell")
+OB SET($values{4};"value";"null")
+
+OB SET($values{5};"cell";"D4";"value";"D4")
+
+xlnt SET VALUES (JSON Stringify($o);JSON Stringify array($values))
+```
+
 ### Set date value
 
 ```
