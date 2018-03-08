@@ -234,7 +234,7 @@ OB SET($o;"sheet";"Sheet1")  //target:sheet
 
 ARRAY OBJECT($values;2)
 
-OB SET($values{1};"cell";"A1";"comment";"comment")//not working?
+OB SET($values{1};"cell";"A1";"comment";"comment")
 OB SET($values{2};"cell";"A1";"value";"value")
 
 xlnt SET VALUES (JSON Stringify($o);JSON Stringify array($values))
