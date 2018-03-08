@@ -117,6 +117,10 @@ otherwise, it can be an array of ``value`` objects.
 
 ``datetime`` can be ISO string, number (integer=date, fractional=time), ``{"year":year, "month":month, "day":day, "hour":hour, "minute":minute, "second":second, "microsecond":microsecond}``, "now" or "today"
 
+**TODO**
+
+``hyperlink`` as ``value``. ``"hyperlink":url`` or ``"hyperlink":{"cell":cell}`` or ``"hyperlink":{"url":url, "display":display}``  
+
 ## Examples
 
 ### Set cell value
